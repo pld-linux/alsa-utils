@@ -4,7 +4,7 @@ Summary(pl):	Advanced Linux Sound Architecture (ALSA) - Narzêdzia
 Summary(pt_BR):	Utilitários para o ALSA (Advanced Linux Sound Architecture)
 Name:		alsa-utils
 Version:	0.5.10
-Release:	5
+Release:	6
 License:	GPL
 Group:		Applications/Sound
 Group(de):	Applikationen/Laut
@@ -13,6 +13,7 @@ Group(pl):	Aplikacje/D¼wiêk
 Group(pt_BR):	Aplicações/Som
 Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
 Source1:	alsasound
+Source2:	alsa-oss-pcm
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-LDFLAGS.patch
 URL:		http://www.alsa-project.org/
@@ -23,6 +24,7 @@ BuildRequires:	automake
 BuildRequires:	flex
 BuildRequires:	libtool
 BuildRequires:	alsa-lib-devel >= 0.5.10
+Prereq:		awk
 Prereq:		/sbin/depmod
 Prereq:		/sbin/ldconfig
 Prereq:		/sbin/chkconfig
@@ -65,11 +67,12 @@ CXXFLAGS="%{rpmcflags} -fno-rtti -fno-exceptions"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/etc/rc.d/init.d
+install -d $RPM_BUILD_ROOT/etc/{rc.d/init.d,sysconfig}
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/alsasound
+install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig
 
 rm -f $RPM_BUILD_ROOT%{_mandir}/man1/arecord.1
 echo ".so aplay.1" > $RPM_BUILD_ROOT%{_mandir}/man1/arecord.1
@@ -104,6 +107,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_sbindir}/*
 %attr(754,root,root) /etc/rc.d/init.d/*
+%config(noreplace) %verify(not size mtime md5) /etc/sysconfig/*
 
 %{_mandir}/man1/alsactl.1*
 %{_mandir}/man1/alsamixer.1*
