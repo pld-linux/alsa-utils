@@ -22,6 +22,7 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	ncurses-devel
 Requires:	dialog
+Requires:	which
 Obsoletes:	alsaconf
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
