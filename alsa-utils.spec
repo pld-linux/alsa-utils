@@ -5,15 +5,15 @@ Summary(pt_BR):	Utilitários para o ALSA (Advanced Linux Sound Architecture)
 Summary(ru):	õÔÉÌÉÔÙ ËÏÍÁÎÄÎÏÊ ÓÔÒÏËÉ ÄÌÑ ALSA project
 Summary(uk):	õÔÉÌ¦ÔÉ ËÏÍÁÎÄÎÏÇÏ ÒÑÄËÁ ÄÌÑ ALSA project
 Name:		alsa-utils
-Version:	0.5.10
-Release:	7
+Version:	0.9.0rc4
+Release:	1
 License:	GPL
 Group:		Applications/Sound
 Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
 Source1:	alsasound
 Source2:	alsa-oss-pcm
-Patch0:		%{name}-DESTDIR.patch
-Patch1:		%{name}-LDFLAGS.patch
+#Patch0:		%{name}-DESTDIR.patch
+#Patch1:		%{name}-LDFLAGS.patch
 URL:		http://www.alsa-project.org/
 BuildRequires:	libstdc++-devel
 BuildRequires:	ncurses-devel
@@ -21,7 +21,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	flex
 BuildRequires:	libtool
-BuildRequires:	alsa-lib-devel >= 0.5.10
+BuildRequires:	alsa-lib-devel >= 0.9.0rc4
 Prereq:		awk
 Prereq:		/sbin/depmod
 Prereq:		/sbin/ldconfig
@@ -86,14 +86,14 @@ Utilitários para o ALSA, a arquitetura de som avançada para o Linux.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
+#%patch0 -p1
+#%patch1 -p1
 
 %build
 rm -f missing
-%{__aclocal}
-%{__autoconf}
-%{__automake}
+aclocal
+autoconf
+automake -a -c -f
 CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
 CXXFLAGS="%{rpmcflags} -fno-rtti -fno-exceptions"
 %configure
@@ -113,6 +113,8 @@ rm -f $RPM_BUILD_ROOT%{_mandir}/man1/arecord.1
 echo ".so aplay.1" > $RPM_BUILD_ROOT%{_mandir}/man1/arecord.1
 
 touch $RPM_BUILD_ROOT%{_sysconfdir}/asound.conf
+
+gzip -9nf README ChangeLog
 
 %post
 /sbin/chkconfig --add alsasound
@@ -135,15 +137,17 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README ChangeLog
+%doc *.gz
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/asound.conf
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_sbindir}/*
 %attr(754,root,root) /etc/rc.d/init.d/*
 %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/*
 
+%{_mandir}/man1/aconnect.1*
 %{_mandir}/man1/alsactl.1*
 %{_mandir}/man1/alsamixer.1*
 %{_mandir}/man1/amixer.1*
 %{_mandir}/man1/aplay.1*
 %{_mandir}/man1/arecord.1*
+%{_mandir}/man1/aseqnet.1*
