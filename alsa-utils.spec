@@ -65,7 +65,7 @@ fi
 %defattr(644,root,root,755)
 %doc README.gz ChangeLog.gz amixer/README.first.gz
 
-%attr(755,root,root) /usr/bin/*
+%attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) /usr/sbin/*
 %{_mandir}/man1/*
 %attr(750,root,root) /etc/rc.d/init.d/*
