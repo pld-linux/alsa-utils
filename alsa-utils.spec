@@ -6,7 +6,7 @@ Summary(ru):	Утилиты командной строки для ALSA project
 Summary(uk):	Утил╕ти командного рядка для ALSA project
 Name:		alsa-utils
 Version:	1.0.5
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/Sound
 Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
@@ -24,6 +24,7 @@ BuildRequires:	libtool
 BuildRequires:	ncurses-devel
 Requires:	awk
 Requires:	dialog
+Requires:	diffutils
 Requires:	which
 Obsoletes:	alsaconf
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
