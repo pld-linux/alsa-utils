@@ -103,12 +103,12 @@ CXXFLAGS="%{rpmcflags} -fno-rtti -fno-exceptions"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/etc/{rc.d/init.d,sysconfig}
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
-install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/alsasound
-install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig
+install -D %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/alsasound
+install -D %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig
 
 rm -f $RPM_BUILD_ROOT%{_mandir}/man1/arecord.1
 echo ".so aplay.1" > $RPM_BUILD_ROOT%{_mandir}/man1/arecord.1
