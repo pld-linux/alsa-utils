@@ -2,7 +2,7 @@ Summary:	Advanced Linux Sound Architecture (ALSA) - Utils
 Summary(pl):	Advanced Linux Sound Architecture (ALSA) - Narzêdzia
 Name:		alsa-utils
 Version:	0.5.10
-Release:	4
+Release:	5
 License:	GPL
 Group:		Applications/Sound
 Group(de):	Applikationen/Laut
@@ -42,6 +42,7 @@ amixer, aplay, arecord.
 %patch1 -p1
 
 %build
+rm -f missing
 aclocal
 autoconf
 automake -a -c
@@ -87,12 +88,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc {README,ChangeLog}.gz
+%doc *.gz
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/asound.conf
-
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_sbindir}/*
-
 %attr(754,root,root) /etc/rc.d/init.d/*
 
 %{_mandir}/man1/alsactl.1*
