@@ -11,7 +11,7 @@ License:	GPL
 Group:		Applications/Sound
 Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
 # Source0-md5:	b5a9bbf63502c727395ea5a4efd33b4a
-Source1:	alsasound
+Source1:	alsasound.init
 Source2:	alsa-oss-pcm
 URL:		http://www.alsa-project.org/
 BuildRequires:	alsa-lib-devel >= 0.9.0rc4
