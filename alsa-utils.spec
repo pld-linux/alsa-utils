@@ -2,19 +2,28 @@ Summary:	Advanced Linux Sound Architecture (ALSA) - Utils
 Summary(es):	Utilitarios para ALSA (Advanced Linux Sound Architecture)
 Summary(pl):	Advanced Linux Sound Architecture (ALSA) - NarzЙdzia
 Summary(pt_BR):	UtilitАrios para o ALSA (Advanced Linux Sound Architecture)
+Summary(ru):	Утилиты командной строки для ALSA project
+Summary(uk):	Утил╕ти командного рядка для ALSA project
 Name:		alsa-utils
 Version:	0.5.10
-Release:	6
+Release:	7
 License:	GPL
 Group:		Applications/Sound
-Group(cs):	Aplikace/Zvuky
-Group(de):	Anwendungen/Laut
+Group(cs):	Aplikace/Zvuk
+Group(da):	Programmer/Lyd
+Group(de):	Applikationen/Laut
 Group(es):	Aplicaciones/Sonido
 Group(fr):	AplicaГУes/Son
+Group(is):	Forrit/HljСП
+Group(it):	Applicazioni/Audio
+Group(no):	Applikasjoner/Lyd
 Group(pl):	Aplikacje/D╪wiЙk
 Group(pt):	AplicaГУes/Som
 Group(pt_BR):	AplicaГУes/Som
 Group(ru):	Приложения/Звук
+Group(sl):	Programi/Zvok
+Group(sv):	TillДmpningar/Ljud
+Group(uk):	Прикладн╕ Програми/Звук
 Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
 Source1:	alsasound
 Source2:	alsa-oss-pcm
@@ -39,19 +48,56 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_sysconfdir	/etc
 
 %description
-Advanced Linux Sound Architecture (ALSA) - Utils alsamixer, amixer,
-aplay, arecord.
+This packages contains command line utilities for the ALSA project:
+
+ - alsactl       - utility for store / restore of soundcard settings
+ - aplay/arecord - utility for playback / record of .wav, .voc, .au files
+ - amixer        - a command line mixer
+ - alsamixer     - ncurses mixer
+
 
 %description -l es
 Utilitarios para el sistema ALSA, la arquitetura avanzada de sonido
 para Linux.
 
+
 %description -l pl
-Advanced Linux Sound Architecture (ALSA) - NarzЙdzia alsamixer,
-amixer, aplay, arecord.
+Pakiet zawiera nastЙpuj╠ce, dziaЁaj╠ce z linii poleceЯ, narzЙdzia dla
+projektu ALSA (Advanced Linux Sound Architecture):
+
+ - alsactl       - narzЙdzie do zapamiЙtywania / przywracania ustawieЯ
+                   karty sieciowej
+ - aplay/arecord - narzЙdzia do odtwarzania / nagrywania plikСw .wav,
+                   .voc, .au
+ - amixer        - mikser dziaЁaj╠cy z linii poleceЯ
+ - alsamixer     - mikser z interfejsem opartym o ncurses
+
 
 %description -l pt_BR
 UtilitАrios para o ALSA, a arquitetura de som avanГada para o Linux.
+
+
+%description -l ru
+Этот пакет содержит утилиты командной строки для ALSA project:
+
+ - alsactl       - утилита для сохранения/восстановления настроек
+                   звуковой карты
+ - aplay/arecord - утилита для записи/проигрывания файлов .wav, .voc,
+                   .au
+ - amixer        - микшер, управляемый из командной строки
+ - alsamixer     - микшер с интерфейсом ncurses
+
+
+%description -l uk
+Цей пакет м╕стить утил╕ти командного рядка для ALSA project:
+
+ - alsactl       - утил╕та для збереження/в╕дновлення настанов
+                   звуково╖ карти
+ - aplay/arecord - утил╕та для запису/програвання файл╕в .wav, .voc,
+                   .au
+ - amixer        - м╕кшер, який керу╓ться з командного рядка
+ - alsamixer     - м╕кшер з ╕нтерфейсом ncurses
+
 
 %prep
 %setup -q
