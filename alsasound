@@ -53,21 +53,6 @@ driver_start()
       /sbin/modprobe $line
       ok
     done
-  #
-  # set (non-)blocking state of pcm devices
-  #
-  for card in /proc/asound/[0-9]; do
-    card=`echo $card | awk '{ sub(/^.*\//, ""); print $0 }'`
-    for dev in /proc/asound/$card/pcmD[0-9]o; do
-      dev=`echo $dev | awk '{ sub(/^.*pcmD/, ""); sub(/o$/, ""); print $0 }'`
-      show "Setting up blocking state for card $card device $dev"
-      busy
-      echo "Playback erase" > /proc/asound/$card/pcmD${dev}o
-      echo "Capture erase" > /proc/asound/$card/pcmD${dev}o
-      awk -v CARD=$card '($1 ~ CARD || $1 ~ /\*/) { $1 = ""; sub(/^ /, ""); print $0}' < /etc/sysconfig/alsa-oss-pcm > /proc/asound/$card/pcmD${dev}o
-      ok
-    done
-  done
   if [ -n "$OLDLOGLEV" ]; then
 	/sbin/loglevel "$OLDLOGLEV"
   fi
