@@ -67,10 +67,20 @@ touch $RPM_BUILD_ROOT%{_sysconfdir}/asound.conf
 gzip -9nf README ChangeLog
 
 %post
-NAME=alsasound; DESC="ALSA %{version} services"; %chkconfig_add
+/sbin/chkconfig --add alsasound
+if [ -f /var/lock/subsys/alsasound ]; then
+	/etc/rc.d/init.d/alsasound restart >&2
+else
+	echo "Run \"/etc/rc.d/init.d/alsasound start\" to start ALSA %{version} services."
+fi
 
 %preun
-NAME=alsasound; %chkconfig_del
+if [ "$1" = "0" ]; then
+	if [ -f /var/lock/subsys/alsasound ]; then
+		/etc/rc.d/init.d/alsasound stop >&2
+	fi
+	/sbin/chkconfig --del alsasound
+fi
 
 %clean
 rm -rf $RPM_BUILD_ROOT
