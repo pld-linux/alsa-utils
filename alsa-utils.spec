@@ -13,22 +13,15 @@ Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
 Source1:	alsasound
 Source2:	alsa-oss-pcm
 URL:		http://www.alsa-project.org/
-BuildRequires:	libstdc++-devel
-BuildRequires:	ncurses-devel
+BuildRequires:	alsa-lib-devel >= 0.9.0rc4
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	flex
+BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
-BuildRequires:	alsa-lib-devel >= 0.9.0rc4
-Prereq:		awk
-Prereq:		/sbin/depmod
-Prereq:		/sbin/ldconfig
-Prereq:		/sbin/chkconfig
-ExcludeArch:	sparc
-ExcludeArch:	sparc64
+BuildRequires:	ncurses-devel
+ExcludeArch:	sparc sparc64
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		_sysconfdir	/etc
 
 %description
 This packages contains command line utilities for the ALSA project:
@@ -59,7 +52,6 @@ projektu ALSA (Advanced Linux Sound Architecture):
 %description -l pt_BR
 Utilitários para o ALSA, a arquitetura de som avançada para o Linux.
 
-
 %description -l ru
 üÔÏÔ ÐÁËÅÔ ÓÏÄÅÒÖÉÔ ÕÔÉÌÉÔÙ ËÏÍÁÎÄÎÏÊ ÓÔÒÏËÉ ÄÌÑ ALSA project:
 
@@ -85,6 +77,7 @@ Utilitários para o ALSA, a arquitetura de som avançada para o Linux.
 Summary:	Init script for Advanced Linux Sound Architecture
 Summary(pl):	Skrypt init dla Advanced Linux Sound Architecture
 Group:		Applications/Sound
+Requires(post,preun):	/sbin/chkconfig
 Requires:	%{name} = %{version}
 
 %description init
@@ -100,7 +93,7 @@ Skrypt init dla Advanced Linux Sound Architecture.
 rm -f missing
 %{__aclocal}
 %{__autoconf}
-%{__automake} --add-missing
+%{__automake}
 CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
 CXXFLAGS="%{rpmcflags} -fno-rtti -fno-exceptions"
 %configure
@@ -121,6 +114,9 @@ echo ".so aplay.1" > $RPM_BUILD_ROOT%{_mandir}/man1/arecord.1
 
 touch $RPM_BUILD_ROOT%{_sysconfdir}/asound.conf
 
+%clean
+rm -rf $RPM_BUILD_ROOT
+
 %post init
 /sbin/chkconfig --add alsasound
 if [ -f /var/lock/subsys/alsasound ]; then
@@ -136,9 +132,6 @@ if [ "$1" = "0" ]; then
 	fi
 	/sbin/chkconfig --del alsasound
 fi
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
