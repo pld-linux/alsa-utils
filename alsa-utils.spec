@@ -9,7 +9,8 @@ Release:	3
 Copyright:	GPL
 Group:		Applications/Sound
 Group(pl):	Aplikacje/D¼wiêk
-Source:		ftp://alsa.jcu.cz/pub/utils/%{name}-%{ver}-%{patchlvl}.tar.gz 
+Source0:	ftp://alsa.jcu.cz/pub/utils/%{name}-%{ver}-%{patchlvl}.tar.gz 
+Source1:	alsasound
 Patch0:		alsa-utils-DESTDIR.patch
 Patch1:		alsa-utils-opt.patch
 BuildPrereq:	alsa-driver-devel
@@ -17,6 +18,7 @@ BuildPrereq:	alsa-lib-devel
 BuildPrereq:	libstdc++-devel
 BuildPrereq:	ncurses-devel
 Requires:	alsa-driver
+Prereq:		/sbin/chkconfig
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
@@ -46,8 +48,30 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,/etc/rc.d/init.d}
 make install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/alsasound
+
+touch $RPM_BUILD_ROOT/etc/asound.conf
+
+
 gzip -9nf README ChangeLog amixer/README.first \
 	$RPM_BUILD_ROOT%{_mandir}/man1/*
+
+%post
+/sbin/chkconfig --add alsasound
+if test -r /var/run/alsasound.pid; then
+    /etc/rc.d/init.d/alsasound stop >&2
+    /etc/rc.d/init.d/alsasound start >&2
+else
+    echo "Run \"/etc/rc.d/init.d/alsasound start\" to start alsasound daemon."
+fi
+/sbin/depmod -a
+
+%preun
+if [ "$1" = "0" ]; then
+    /sbin/chkconfig --del alsasound
+    /etc/rc.d/init.d/alsasound stop >&2
+fi
+/sbin/depmod -a
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -57,7 +81,11 @@ rm -rf $RPM_BUILD_ROOT
 %doc {README,ChangeLog,amixer/README.first}.gz
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_sbindir}/*
+
 %{_mandir}/man1/*
+
+%attr(754,root,root) /etc/rc.d/init.d/*
+%attr(640,root,root) %config /etc/asound.conf
 
 %changelog
 * Tue May 25 1999 Piotr Czerwiñski <pius@pld.org.pl> 
