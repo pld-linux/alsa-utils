@@ -46,8 +46,8 @@ amixer, aplay, arecord.
 aclocal
 autoconf
 automake -a -c
-CFLAGS="%{?debug:-O0 -g}%{!?debug:$RPM_OPT_FLAGS} -I/usr/include/ncurses"
-CXXFLAGS="%{?debug:-O0 -g}%{!?debug:$RPM_OPT_FLAGS} -fno-rtti -fno-exceptions"
+CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
+CXXFLAGS="%{rpmcflags} -fno-rtti -fno-exceptions"
 %configure
 
 %{__make} 
