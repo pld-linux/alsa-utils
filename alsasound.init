@@ -71,9 +71,15 @@ detect_stop()
   #
   # remove all sound modules
   #
-  /sbin/lsmod | awk '/^snd/ { print $0 }' | while read line; do \
-     /sbin/rmmod `echo $line | cut -d ' ' -f 1`; \
+  for module in `/sbin/lsmod | awk '/^snd/ { print $1 }'`; do
+  	/sbin/rmmod `echo $module | cut -d ' ' -f 1` > /dev/null 2>&1
+	if [ $? == 1 ]; then
+		echo
+		show "ERROR: unable to umount module : "$module
+		return 1
+	fi
   done
+  return 0
 }
 
 driver_stop()
@@ -90,6 +96,7 @@ driver_stop()
   # remove all sound modules
   #
   detect_stop
+  return $?
 }
 
 detect_start()
@@ -123,7 +130,16 @@ case "$1" in
 				exit 1
 			fi
 		else
-			msg_already_running "ALSA driver"
+			if [ $(kernelverser) == 002004 ]; then
+				driver_start
+				if [ -d /proc/asound ]; then
+					touch /var/lock/subsys/alsasound
+				else
+					exit 1
+				fi
+			else
+				msg_already_running "ALSA driver"
+			fi
 		fi
 	fi
 	;;
@@ -132,12 +148,18 @@ case "$1" in
 	if [ -d /proc/asound ]; then
 		show "Shutting down sound driver:"
 		busy
+
 		if [ -f /proc/asound/detect ]; then
 			detect_stop
 		else
 			driver_stop
+			if [ $? == 1 ]; then
+				fail
+				exit 1
+			fi
 		fi
-		(rmmod isapnp; rmmod soundcore) 2> /dev/null
+		
+		(rmmod isapnp; rmmod soundcore) > /dev/null 2>&1
 		if [ -d /var/lock/subsys ]; then
 			rm -f /var/lock/subsys/alsasound
 		fi
