@@ -7,7 +7,7 @@ Summary(uk):	Утил╕ти командного рядка для ALSA project
 Name:		alsa-utils
 %define		_pre	pre1
 Version:	1.0.0
-Release:	0.%{_pre}.1
+Release:	0.%{_pre}.2
 License:	GPL
 Group:		Applications/Sound
 Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}%{_pre}.tar.bz2
