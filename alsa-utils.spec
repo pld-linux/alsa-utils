@@ -21,6 +21,7 @@ BuildRequires:	flex
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	ncurses-devel
+Requires:	awk
 Requires:	dialog
 Requires:	which
 Obsoletes:	alsaconf
