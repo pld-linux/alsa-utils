@@ -1,7 +1,7 @@
 Summary:	Advanced Linux Sound Architecture (ALSA) - Utils
 Summary(pl):	Advanced Linux Sound Architecture (ALSA) - Narzêdzia
 Name:		alsa-utils
-Version:	0.5.5
+Version:	0.5.6
 Release:	1
 License:	GPL
 Group:		Applications/Sound
