@@ -91,7 +91,7 @@ Utilitários para o ALSA, a arquitetura de som avançada para o Linux.
 
 %build
 rm -f missing
-aclocal
+%{__aclocal}
 %{__autoconf}
 %{__automake}
 CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
