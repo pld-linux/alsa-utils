@@ -114,8 +114,6 @@ echo ".so aplay.1" > $RPM_BUILD_ROOT%{_mandir}/man1/arecord.1
 
 touch $RPM_BUILD_ROOT%{_sysconfdir}/asound.conf
 
-gzip -9nf README ChangeLog
-
 %post
 /sbin/chkconfig --add alsasound
 if [ -f /var/lock/subsys/alsasound ]; then
@@ -137,7 +135,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz
+%doc README ChangeLog
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/asound.conf
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_sbindir}/*
