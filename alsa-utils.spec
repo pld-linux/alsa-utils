@@ -1,16 +1,14 @@
 Summary:	Advanced Linux Sound Architecture (ALSA) - Utils
 Summary(pl):	Advanced Linux Sound Architecture (ALSA) - Narzêdzia
 Name:		alsa-utils
-Version:	0.5.10
-Release:	2
+Version:	0.9.0beta3
+Release:	1
 License:	GPL
 Group:		Applications/Sound
 Group(de):	Applikationen/Laut
 Group(pl):	Aplikacje/D¼wiêk
 Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
 Source1:	alsasound
-Patch0:		%{name}-DESTDIR.patch
-Patch1:		%{name}-LDFLAGS.patch
 URL:		http://www.alsa-project.org/
 BuildRequires:	libstdc++-devel
 BuildRequires:	ncurses-devel
@@ -18,7 +16,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	flex
 BuildRequires:	libtool
-BuildRequires:	alsa-lib-devel >= 0.5.8
+BuildRequires:	alsa-lib-devel >= 0.9.0beta3
 Prereq:		/sbin/depmod
 Prereq:		/sbin/ldconfig
 Prereq:		/sbin/chkconfig
@@ -39,8 +37,6 @@ amixer, aplay, arecord.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
 
 %build
 aclocal
