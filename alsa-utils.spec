@@ -67,7 +67,7 @@ fi
 
 %attr(755,root,root) /usr/bin/*
 %attr(755,root,root) /usr/sbin/*
-%attr(644,root,man ) %{_mandir}/man1/*
+%{_mandir}/man1/*
 %attr(750,root,root) /etc/rc.d/init.d/*
 %attr(600,root,root) %config(noreplace) /etc/asound.conf
 
