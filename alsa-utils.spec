@@ -35,7 +35,7 @@ alsamixer, amixer, aplay, arecord
 %patch1 -p1
 
 %build
-./configure %{_target} \
+./configure %{_target_platform} \
 	--prefix=%{_prefix} \
 	--mandir=%{_mandir}
 
