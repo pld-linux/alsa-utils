@@ -59,16 +59,16 @@ gzip -9nf README ChangeLog amixer/README.first \
 %post
 /sbin/chkconfig --add alsasound
 if test -r /var/run/alsasound.pid; then
-    /etc/rc.d/init.d/alsasound stop >&2
-    /etc/rc.d/init.d/alsasound start >&2
+	/etc/rc.d/init.d/alsasound stop >&2
+	/etc/rc.d/init.d/alsasound start >&2
 else
-    echo "Run \"/etc/rc.d/init.d/alsasound start\" to start alsasound daemon."
+	echo "Run \"/etc/rc.d/init.d/alsasound start\" to start alsasound daemon."
 fi
 
 %preun
 if [ "$1" = "0" ]; then
-    /sbin/chkconfig --del alsasound
-    /etc/rc.d/init.d/alsasound stop >&2
+	/sbin/chkconfig --del alsasound
+	/etc/rc.d/init.d/alsasound stop >&2
 fi
 
 %clean
