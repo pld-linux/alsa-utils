@@ -5,16 +5,16 @@ Summary(pt_BR):	UtilitАrios para o ALSA (Advanced Linux Sound Architecture)
 Summary(ru):	Утилиты командной строки для ALSA project
 Summary(uk):	Утил╕ти командного рядка для ALSA project
 Name:		alsa-utils
-Version:	1.0.2
+Version:	1.0.3
 Release:	1
 License:	GPL
 Group:		Applications/Sound
 Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
-# Source0-md5:	f1742e00052f01a00fca881d796e6bf4
+# Source0-md5:	089b1ad09d2bb81ed1ce1bae46152335
 Source1:	alsasound.init
 Source2:	alsa-oss-pcm
 URL:		http://www.alsa-project.org/
-BuildRequires:	alsa-lib-devel >= 1.0.0
+BuildRequires:	alsa-lib-devel >= 1.0.3
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	flex
@@ -76,7 +76,7 @@ Summary:	Init script for Advanced Linux Sound Architecture
 Summary(pl):	Skrypt init dla Advanced Linux Sound Architecture
 Group:		Applications/Sound
 Requires(post,preun):	/sbin/chkconfig
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description init
 Init script for Advanced Linux Sound Architecture.
@@ -95,7 +95,6 @@ rm -f missing
 CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
 CXXFLAGS="%{rpmcflags} -fno-rtti -fno-exceptions"
 %configure
-
 %{__make}
 
 %install
@@ -144,7 +143,9 @@ fi
 %{_mandir}/man1/amidi.1*
 %{_mandir}/man1/amixer.1*
 %{_mandir}/man1/aplay.1*
+%{_mandir}/man1/aplaymidi.1*
 %{_mandir}/man1/arecord.1*
+%{_mandir}/man1/arecordmidi.1*
 %{_mandir}/man1/aseqnet.1*
 %{_mandir}/man1/iecset.1*
 %{_mandir}/man8/alsaconf.8*
