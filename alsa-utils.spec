@@ -1,7 +1,7 @@
 Summary:	Advanced Linux Sound Architecture (ALSA) - Utils
 Summary(pl):	Advanced Linux Sound Architecture (ALSA) - Narzêdzia
 Name:		alsa-utils
-Version:	0.3.1
+Version:	0.4.0
 Release:	1
 Copyright:	GPL
 Group:		Applications/Sound
@@ -82,8 +82,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc {README,ChangeLog}.gz
-%config(noreplace) /etc/asound.conf
-%config(noreplace) /etc/xamixer.conf
+%config(noreplace) %verify(not md5 size mtime) /etc/asound.conf
+%config(noreplace) %verify(not md5 size mtime) /etc/xamixer.conf
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_sbindir}/*
 
