@@ -66,7 +66,7 @@ fi
 %doc README.gz ChangeLog.gz amixer/README.first.gz
 
 %attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) /usr/sbin/*
+%attr(755,root,root) %{_sbindir}/*
 %{_mandir}/man1/*
 %attr(750,root,root) /etc/rc.d/init.d/*
 %attr(600,root,root) %config(noreplace) /etc/asound.conf
