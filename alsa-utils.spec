@@ -15,7 +15,7 @@ Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}%{_pre}.tar.bz2
 Source1:	alsasound.init
 Source2:	alsa-oss-pcm
 URL:		http://www.alsa-project.org/
-BuildRequires:	alsa-lib-devel >= 0.9.0rc4
+BuildRequires:	alsa-lib-devel >= 1.0.0
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	flex
