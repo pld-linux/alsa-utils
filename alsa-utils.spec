@@ -108,7 +108,7 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 install -D %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/alsasound
-install -D %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig
+install -D %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/alsa-oss-pcm
 
 rm -f $RPM_BUILD_ROOT%{_mandir}/man1/arecord.1
 echo ".so aplay.1" > $RPM_BUILD_ROOT%{_mandir}/man1/arecord.1
