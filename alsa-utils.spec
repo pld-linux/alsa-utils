@@ -11,7 +11,7 @@ Group(pl):   Aplikacje/D¼wiêk
 Vendor:      Jaroslav Kysela <perex@jcu.cz>
 Source0:     ftp://alsa.jcu.cz/pub/utils/%{name}-%{ver}-%{patchlvl}.tar.gz 
 Source1:     alsasound
-BuildRoot:   /var/tmp/buildroot-%{name}-%{version}
+BuildRoot:	/tmp/%{name}-%{version}-root
 URL:	     http://alsa.jcu.cz
 Requires:    alsa-driver
 Requires:    alsa-lib
