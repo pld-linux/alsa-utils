@@ -90,15 +90,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/*
 
 %attr(754,root,root) /etc/rc.d/init.d/*
-
-%changelog
-* Sat Jun 05 1999 Arkadiusz Mi¶kiewicz <misiek@pld.org.pl>
-- upgreaded to 0.3.1
-- few fixes
-
-* Tue May 25 1999 Piotr Czerwiñski <pius@pld.org.pl> 
-  [0.3.0pre3-3]
-- package is FHS 2.0 compliant,
-- based on spec file made by Helge Jensen <slog@slog.dk>,
-- rewritten for PLD use by me and Arkadiusz Mi¶kiewicz <misiek@misiek.eu.org>,
-- pl translation by Arkadiusz Mi¶kiewicz <misiek@misiek.eu.org>.
