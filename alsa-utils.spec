@@ -1,12 +1,16 @@
 Summary:	Advanced Linux Sound Architecture (ALSA) - Utils
+Summary(es):	Utilitarios para ALSA (Advanced Linux Sound Architecture)
 Summary(pl):	Advanced Linux Sound Architecture (ALSA) - Narzêdzia
+Summary(pt_BR):	Utilitários para o ALSA (Advanced Linux Sound Architecture)
 Name:		alsa-utils
 Version:	0.5.10
 Release:	5
 License:	GPL
 Group:		Applications/Sound
 Group(de):	Applikationen/Laut
+Group(es):	Aplicaciones/Sonido
 Group(pl):	Aplikacje/D¼wiêk
+Group(pt_BR):	Aplicações/Som
 Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
 Source1:	alsasound
 Patch0:		%{name}-DESTDIR.patch
@@ -32,9 +36,16 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Advanced Linux Sound Architecture (ALSA) - Utils alsamixer, amixer,
 aplay, arecord.
 
+%description -l es
+Utilitarios para el sistema ALSA, la arquitetura avanzada de sonido
+para Linux.
+
 %description -l pl
 Advanced Linux Sound Architecture (ALSA) - Narzêdzia alsamixer,
 amixer, aplay, arecord.
+
+%description -l pt_BR
+Utilitários para o ALSA, a arquitetura de som avançada para o Linux.
 
 %prep
 %setup -q
