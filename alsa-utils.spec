@@ -50,13 +50,13 @@ CFLAGS="$RPM_OPT_FLAGS"; export CFLAGS
 CXXFLAGS="$RPM_OPT_FLAGS -fno-rtti -fno-exceptions" ; export CXXFLAGS
 %configure
 
-make 
+%{__make} 
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,/etc/rc.d/init.d}
 
-make install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/alsasound
 
