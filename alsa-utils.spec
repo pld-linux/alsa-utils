@@ -12,6 +12,7 @@ Source1:	alsasound
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-LDFLAGS.patch
 URL:		http://www.alsa-project.org/
+Requires:	alsaconf
 BuildRequires:	libstdc++-devel
 BuildRequires:	ncurses-devel
 BuildRequires:	autoconf
