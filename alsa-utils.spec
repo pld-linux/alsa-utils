@@ -112,6 +112,8 @@ echo ".so aplay.1" > $RPM_BUILD_ROOT%{_mandir}/man1/arecord.1
 
 touch $RPM_BUILD_ROOT%{_sysconfdir}/asound.conf
 
+%find_lang alsaconf
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -131,7 +133,7 @@ if [ "$1" = "0" ]; then
 	/sbin/chkconfig --del alsasound
 fi
 
-%files
+%files -f alsaconf.lang
 %defattr(644,root,root,755)
 %doc README ChangeLog
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/asound.conf
