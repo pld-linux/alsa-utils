@@ -48,7 +48,7 @@ driver_start()
   fi
   awk '$1 == "alias" && $3 != "off" && ($2 ~ /^snd-card-[0-9]$/ || $2 ~ /^sound-service-[0-9]-[0-9]+$/) {print $2}' < $MODULES_CONF | \
     while read line; do \
-      show "Starting sound driver: $line"
+      msg_starting "sound driver: $line"
       busy
       /sbin/modprobe $line
       ok
@@ -103,52 +103,60 @@ detect_start()
 # See how we were called.
 case "$1" in
   start)
-        # Start driver.
+	# Start driver.
 	if [ ! -d /proc/asound ]; then
-	  driver_start
-	  if [ -d /proc/asound ] && [ -d /var/lock/subsys ]; then
-	    touch /var/lock/subsys/alsasound
-	  fi
+		driver_start
+		if [ -d /proc/asound ]; then
+			touch /var/lock/subsys/alsasound
+		else
+			exit 1
+		fi
 	else
-	  if [ -f /proc/asound/detect ]; then
-	    show "Shutting down sound detect module:"
-	    detect_stop
-	    ok
-	    driver_start
-	    if [ -d /proc/asound ] && [ -d /var/lock/subsys ]; then
-	      touch /var/lock/subsys/alsasound
-	    fi
-          else
-	    show "ALSA driver is already running"; fail
-	  fi
+		if [ -f /proc/asound/detect ]; then
+			show "Shutting down sound detect module:"
+			detect_stop
+			ok
+			driver_start
+			if [ -d /proc/asound ]; then
+				touch /var/lock/subsys/alsasound
+			else
+				exit 1
+			fi
+		else
+			msg_already_running "ALSA driver"
+		fi
 	fi
-        ;;
+	;;
   stop)
-        # Stop daemons.
+	# Stop daemons.
 	if [ -d /proc/asound ]; then
-          show "Shutting down sound driver:"
-	  busy
-	  if [ -f /proc/asound/detect ]; then
-	    detect_stop
-	  else
-	    driver_stop
-	  fi
-	  (rmmod isapnp; rmmod soundcore) 2> /dev/null
-	  if [ -d /var/lock/subsys ]; then
-	    rm -f /var/lock/subsys/alsasound
-	  fi
- 	  ok
+		show "Shutting down sound driver:"
+		busy
+		if [ -f /proc/asound/detect ]; then
+			detect_stop
+		else
+			driver_stop
+		fi
+		(rmmod isapnp; rmmod soundcore) 2> /dev/null
+		if [ -d /var/lock/subsys ]; then
+			rm -f /var/lock/subsys/alsasound
+		fi
+ 		ok
 	else
-	  show "ALSA driver isn't running "; fail
+		msg_not_running "ALSA driver"
 	fi
-        ;;
-  restart)
+	;;
+  restart|force-reload)
 	$0 stop
 	$0 start
+	exit $?
+	;;
+  status)
+	# TODO
 	;;
   *)
-        echo "Usage: $0 {start|stop|restart}"
-        exit 1
+	msg_usage "$0 {start|stop|restart|force-reload|status}"
+	exit 3
 esac
 
 exit 0
