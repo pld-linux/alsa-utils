@@ -140,10 +140,13 @@ fi
 %{_mandir}/man1/aconnect.1*
 %{_mandir}/man1/alsactl.1*
 %{_mandir}/man1/alsamixer.1*
+%{_mandir}/man1/amidi.1*
 %{_mandir}/man1/amixer.1*
 %{_mandir}/man1/aplay.1*
 %{_mandir}/man1/arecord.1*
 %{_mandir}/man1/aseqnet.1*
+%{_mandir}/man1/iecset.1*
+%{_mandir}/man8/alsaconf.8*
 
 %files init
 %defattr(644,root,root,755)
