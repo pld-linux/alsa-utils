@@ -22,7 +22,7 @@ Prereq:		/sbin/ldconfig
 Prereq:		/sbin/chkconfig
 ExcludeArch:	sparc
 ExcludeArch:	sparc64
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	/etc
 %define		_kernel_ver	%(grep UTS_RELEASE /usr/src/linux/include/linux/version.h 2>/dev/null | cut -d'"' -f2)
@@ -51,7 +51,6 @@ CXXFLAGS="$RPM_OPT_FLAGS -fno-rtti -fno-exceptions" ; export CXXFLAGS
 %configure
 
 make 
-
 
 %install
 rm -rf $RPM_BUILD_ROOT
