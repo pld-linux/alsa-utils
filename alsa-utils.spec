@@ -67,7 +67,7 @@ gzip -9nf README ChangeLog \
 
 %post
 /sbin/chkconfig --add alsasound
-if [ -f /var/lock/subsys/alsasound]; then
+if [ -f /var/lock/subsys/alsasound ]; then
 	/etc/rc.d/init.d/alsasound restart >&2
 else
 	echo "Run \"/etc/rc.d/init.d/alsasound start\" to start ALSA %{version} services."
