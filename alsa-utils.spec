@@ -1,8 +1,8 @@
 Summary:	Advanced Linux Sound Architecture (ALSA) - Utils
 Summary(pl):	Advanced Linux Sound Architecture (ALSA) - Narzêdzia
 Name:		alsa-utils
-Version:	0.5.9b
-Release:	2
+Version:	0.5.10
+Release:	1
 License:	GPL
 Group:		Applications/Sound
 Group(de):	Applikationen/Laut
@@ -18,7 +18,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	flex
 BuildRequires:	libtool
-BuildRequires:	alsa-lib-devel >= 0.5.5
+BuildRequires:	alsa-lib-devel >= 0.5.8
 Prereq:		/sbin/depmod
 Prereq:		/sbin/ldconfig
 Prereq:		/sbin/chkconfig
@@ -39,7 +39,7 @@ amixer, aplay, arecord.
 
 %prep
 %setup -q
-%patch0 -p2
+%patch0 -p1
 %patch1 -p1
 
 %build
@@ -55,11 +55,14 @@ CXXFLAGS="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-O -g} -fno-rtti -fno-exceptions"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,/etc/rc.d/init.d}
+install -d $RPM_BUILD_ROOT/etc/rc.d/init.d
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/alsasound
+
+rm -f $RPM_BUILD_ROOT%{_mandir}/man1/arecord.1
+echo ".so aplay.1" > $RPM_BUILD_ROOT%{_mandir}/man1/arecord.1
 
 touch $RPM_BUILD_ROOT%{_sysconfdir}/asound.conf
 
