@@ -1,12 +1,15 @@
+%define		ver	 0.3.0
+%define		patchlvl pre3
+
 Summary:     Advanced Linux Sound Architecture (ALSA) - Utils
 Name:	     alsa-utils
-Version:     0.3.0-pre3
+Version:     %{ver}_%{patchlvl}
 Release:     2d
 Copyright:   GPL
 Group:	     Applications/Sound
 Group(pl):   Aplikacje/D¼wiêk
 Vendor:      Jaroslav Kysela <perex@jcu.cz>
-Source0:     ftp://alsa.jcu.cz/pub/utils/%{name}-%{version}.tar.gz 
+Source0:     ftp://alsa.jcu.cz/pub/utils/%{name}-%{ver}-%{patchlvl}.tar.gz 
 Source1:     alsasound
 BuildRoot:   /var/tmp/buildroot-%{name}-%{version}
 URL:	     http://alsa.jcu.cz
@@ -25,12 +28,12 @@ Advanced Linux Sound Architecture (ALSA) - Narzêdzia
 alsamixer, amixer, aplay, arecord
 
 %prep
-%setup -q 
+%setup  -q -n %{name}-%{ver}-%{patchlvl}
 %patch  -p1
 %patch1 -p1
 
 %build
-./configure --prefix=/usr
+./configure %{_target} --prefix=/usr
 OPT="$RPM_OPT_FLAGS" make
 
 %install
