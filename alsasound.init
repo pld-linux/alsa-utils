@@ -40,8 +40,6 @@ else
 	MODULES_CONF=/etc/conf.modules
 fi
 
-echo $MODULES_CONF
-
 driver_start()
 {
   #
