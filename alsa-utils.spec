@@ -12,8 +12,6 @@ Group:		Applications/Sound
 Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
 Source1:	alsasound
 Source2:	alsa-oss-pcm
-#Patch0:		%{name}-DESTDIR.patch
-#Patch1:		%{name}-LDFLAGS.patch
 URL:		http://www.alsa-project.org/
 BuildRequires:	libstdc++-devel
 BuildRequires:	ncurses-devel
@@ -86,14 +84,12 @@ Utilitários para o ALSA, a arquitetura de som avançada para o Linux.
 
 %prep
 %setup -q
-#%patch0 -p1
-#%patch1 -p1
 
 %build
 rm -f missing
-aclocal
-autoconf
-automake -a -c -f
+%{__aclocal}
+%{__autoconf}
+%{__automake}
 CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
 CXXFLAGS="%{rpmcflags} -fno-rtti -fno-exceptions"
 %configure
