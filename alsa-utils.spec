@@ -16,7 +16,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	flex
 BuildRequires:	libtool
-BuildConflicts:	alsa-lib <= 0.4.0
+BuildRequires:	alsa-lib >= 0.5.5
 Prereq:		/sbin/depmod
 Prereq:		/sbin/ldconfig
 Prereq:		/sbin/chkconfig
@@ -57,21 +57,18 @@ make
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,/etc/rc.d/init.d}
 
-make install \
-	DESTDIR=$RPM_BUILD_ROOT
+make install DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/alsasound
 
-touch $RPM_BUILD_ROOT/etc/asound.conf
-
-#mv $RPM_BUILD_ROOT/usr/etc/xamixer.conf $RPM_BUILD_ROOT/etc
+touch $RPM_BUILD_ROOT%{_sysconfdir}/asound.conf
 
 gzip -9nf README ChangeLog \
 	$RPM_BUILD_ROOT%{_mandir}/man1/*
 
 %post
 /sbin/chkconfig --add alsasound
-if test -r /var/lock/subsys/alsasound; then
+if [ -f /var/lock/subsys/alsasound]; then
 	/etc/rc.d/init.d/alsasound restart >&2
 else
 	echo "Run \"/etc/rc.d/init.d/alsasound start\" to start ALSA %{version} services."
@@ -79,8 +76,10 @@ fi
 
 %preun
 if [ "$1" = "0" ]; then
+	if [ -f /var/lock/subsys/alsasound ]; then
+		/etc/rc.d/init.d/alsasound stop >&2
+	fi
 	/sbin/chkconfig --del alsasound
-	/etc/rc.d/init.d/alsasound stop >&2
 fi
 
 %clean
@@ -89,8 +88,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc {README,ChangeLog}.gz
-%config(noreplace) %verify(not md5 size mtime) /etc/asound.conf
-#%config(noreplace) %verify(not md5 size mtime) /etc/xamixer.conf
+%config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/asound.conf
 
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_sbindir}/*
