@@ -1,40 +1,20 @@
-diff -urN alsa-utils-0.3.1.orig/aplay/Makefile alsa-utils-0.3.1/aplay/Makefile
---- alsa-utils-0.3.1.orig/aplay/Makefile	Sat Jun  5 16:54:50 1999
-+++ alsa-utils-0.3.1/aplay/Makefile	Sat Jun  5 17:03:18 1999
-@@ -356,12 +356,12 @@
- 	$(LN_S) $< $@
+--- alsa-0.4.0/alsa-utils-0.4.0/aplay/Makefile.am.DESTDIR	Sat Jan 30 20:15:42 1999
++++ alsa-0.4.0/alsa-utils-0.4.0/aplay/Makefile.am	Fri Aug 20 10:18:52 1999
+@@ -13,12 +13,12 @@
+ 
+ arecord.1: aplay.1
+ 	rm -f arecord.1
+-	$(LN_S) $< $@
++	echo ".so $<" > $@
  
  install-exec-hook:
 -	rm -f $(bindir)/arecord
 -	(cd $(bindir) && $(LN_S) aplay arecord)
-+	rm -f $(DESTDIR)$(bindir)/arecord
++	rm -f $(DESTDIR)/$(bindir)/arecord
 +	(cd $(DESTDIR)$(bindir) && $(LN_S) aplay arecord)
  
  install-data-hook:
 -	rm -f $(mandir)/man1/arecord.1
 -	(cd $(mandir)/man1 && $(LN_S) aplay.1 arecord.1)
 +	rm -f $(DESTDIR)$(mandir)/man1/arecord.1
-+	(cd $(DESTDIR)$(mandir)/man1 && $(LN_S) aplay.1 arecord.1)
- 
- # Tell versions [3.59,3.63) of GNU make to not export all variables.
- # Otherwise a system limit (for SysV at least) may be exceeded.
-diff -urN alsa-utils-0.3.1.orig/aplay/Makefile.in alsa-utils-0.3.1/aplay/Makefile.in
---- alsa-utils-0.3.1.orig/aplay/Makefile.in	Sat Jun  5 16:54:50 1999
-+++ alsa-utils-0.3.1/aplay/Makefile.in	Sat Jun  5 17:03:30 1999
-@@ -356,12 +356,12 @@
- 	$(LN_S) $< $@
- 
- install-exec-hook:
--	rm -f $(bindir)/arecord
--	(cd $(bindir) && $(LN_S) aplay arecord)
-+	rm -f $(DESTDIR)$(bindir)/arecord
-+	(cd $(DESTDIR)$(bindir) && $(LN_S) aplay arecord)
- 
- install-data-hook:
--	rm -f $(mandir)/man1/arecord.1
--	(cd $(mandir)/man1 && $(LN_S) aplay.1 arecord.1)
-+	rm -f $(DESTDIR)$(mandir)/man1/arecord.1
-+	(cd $(DESTDIR)$(mandir)/man1 && $(LN_S) aplay.1 arecord.1)
- 
- # Tell versions [3.59,3.63) of GNU make to not export all variables.
- # Otherwise a system limit (for SysV at least) may be exceeded.
++	(cd $(DESTDIR)$(mandir)/man1 && echo ".so aplay.1" > arecord.1)
