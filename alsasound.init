@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-# alsasound     This shell script takes care of starting and stopping
-#               ALSA sound driver.
+# alsasound	This shell script takes care of starting and stopping \
+#		ALSA sound driver.
 #
 # This script requires /usr/sbin/alsactl program from alsa-utils package.
 #
@@ -23,8 +23,8 @@
 #
 #
 # For PLD Linux Distribution:
-# chkconfig: 2345 87 14
-# description: ALSA driver
+# chkconfig:	2345 87 14
+# description:	ALSA driver
 #
 
 # Source function library.
