@@ -149,6 +149,7 @@ fi
 %{_mandir}/man1/arecordmidi.1*
 %{_mandir}/man1/aseqnet.1*
 %{_mandir}/man1/iecset.1*
+%{_mandir}/man1/speaker-test.1*
 %{_mandir}/man8/alsaconf.8*
 
 %files init
