@@ -32,11 +32,9 @@ This packages contains command line utilities for the ALSA project:
  - amixer        - a command line mixer
  - alsamixer     - ncurses mixer
 
-
 %description -l es
 Utilitarios para el sistema ALSA, la arquitetura avanzada de sonido
 para Linux.
-
 
 %description -l pl
 Pakiet zawiera nastЙpuj╠ce, dziaЁaj╠ce z linii poleceЯ, narzЙdzia dla
@@ -48,7 +46,6 @@ projektu ALSA (Advanced Linux Sound Architecture):
                    .voc, .au
  - amixer        - mikser dziaЁaj╠cy z linii poleceЯ
  - alsamixer     - mikser z interfejsem opartym o ncurses
-
 
 %description -l pt_BR
 UtilitАrios para o ALSA, a arquitetura de som avanГada para o Linux.
@@ -62,7 +59,6 @@ UtilitАrios para o ALSA, a arquitetura de som avanГada para o Linux.
                    .au
  - amixer        - микшер, управляемый из командной строки
  - alsamixer     - микшер с интерфейсом ncurses
-
 
 %description -l uk
 Цей пакет м╕стить утил╕ти командного рядка для ALSA project:
