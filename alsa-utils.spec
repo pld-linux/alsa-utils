@@ -21,6 +21,7 @@ BuildRequires:	flex
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	ncurses-devel
+Requires:	dialog
 Obsoletes:	alsaconf
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
