@@ -69,7 +69,9 @@ driver_start()
   # restore driver settings
   #
   if [ -x $alsactl ]; then
-    $alsactl restore
+    if [ -f /etc/asound.state ]; then
+      $alsactl restore
+    fi
   else
     show "ERROR: alsactl not found"; fail
   fi
