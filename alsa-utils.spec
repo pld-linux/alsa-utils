@@ -2,13 +2,14 @@ Summary:	Advanced Linux Sound Architecture (ALSA) - Utils
 Summary(pl):	Advanced Linux Sound Architecture (ALSA) - Narzêdzia
 Name:		alsa-utils
 Version:	0.5.8
-Release:	3
+Release:	4
 License:	GPL
 Group:		Applications/Sound
 Group(pl):	Aplikacje/D¼wiêk
 Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
 Source1:	alsasound
 Patch0:		alsa-utils-DESTDIR.patch
+Patch1:		alsa-utils-LDFLAGS.patch
 URL:		http://www.alsa-project.org/
 BuildRequires:	libstdc++-devel
 BuildRequires:	ncurses-devel
@@ -38,6 +39,7 @@ amixer, aplay, arecord.
 %prep
 %setup -q
 %patch0 -p2
+%patch1 -p1
 
 %build
 LDFLAGS="-s"; export LDFLAGS
@@ -46,8 +48,9 @@ aclocal
 automake -c || :
 autoconf
 CPPFLAGS="-I/usr/include/ncurses" ; export CPPFLAGS
-CFLAGS="$RPM_OPT_FLAGS"; export CFLAGS
-CXXFLAGS="$RPM_OPT_FLAGS -fno-rtti -fno-exceptions" ; export CXXFLAGS
+CXXFLAGS="$RPM_OPT_FLAGS -fno-rtti -fno-exceptions"
+LDFLAGS="-s"
+export CPPFLAGS CXXFLAGS LDFLAGS
 %configure
 
 %{__make} 
