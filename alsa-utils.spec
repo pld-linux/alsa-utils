@@ -9,21 +9,6 @@ Version:	0.5.10
 Release:	7
 License:	GPL
 Group:		Applications/Sound
-Group(cs):	Aplikace/Zvuk
-Group(da):	Programmer/Lyd
-Group(de):	Applikationen/Laut
-Group(es):	Aplicaciones/Sonido
-Group(fr):	Aplicações/Son
-Group(is):	Forrit/Hljóğ
-Group(it):	Applicazioni/Audio
-Group(no):	Applikasjoner/Lyd
-Group(pl):	Aplikacje/D¼wiêk
-Group(pt):	Aplicações/Som
-Group(pt_BR):	Aplicações/Som
-Group(ru):	ğÒÉÌÏÖÅÎÉÑ/ú×ÕË
-Group(sl):	Programi/Zvok
-Group(sv):	Tillämpningar/Ljud
-Group(uk):	ğÒÉËÌÁÄÎ¦ ğÒÏÇÒÁÍÉ/ú×ÕË
 Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
 Source1:	alsasound
 Source2:	alsa-oss-pcm
