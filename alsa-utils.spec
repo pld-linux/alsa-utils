@@ -49,7 +49,7 @@ Pakiet zawiera nastêpuj±ce, dzia³aj±ce z linii poleceñ, narzêdzia dla
 projektu ALSA (Advanced Linux Sound Architecture):
 
  - alsactl       - narzêdzie do zapamiêtywania / przywracania ustawieñ
-                   karty sieciowej
+                   karty d¼wiêkowej
  - aplay/arecord - narzêdzia do odtwarzania / nagrywania plików .wav,
                    .voc, .au
  - amixer        - mikser dzia³aj±cy z linii poleceñ
