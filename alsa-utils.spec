@@ -67,10 +67,10 @@ touch $RPM_BUILD_ROOT%{_sysconfdir}/asound.conf
 gzip -9nf README ChangeLog
 
 %post
-NAME=alsasound; DESC="ALSA %{version} services"; %chkconfig_post
+NAME=alsasound; DESC="ALSA %{version} services"; %chkconfig_add
 
 %preun
-NAME=alsasound; %chkconfig_preun
+NAME=alsasound; %chkconfig_del
 
 %clean
 rm -rf $RPM_BUILD_ROOT
