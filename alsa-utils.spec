@@ -1,23 +1,23 @@
-%define		ver	 0.3.0
-%define		patchlvl pre3
+%define         ver      0.3.0
+%define         patchlvl pre3
 
-Summary:     Advanced Linux Sound Architecture (ALSA) - Utils
-Name:	     alsa-utils
-Version:     %{ver}_%{patchlvl}
-Release:     2d
-Copyright:   GPL
-Group:	     Applications/Sound
-Group(pl):   Aplikacje/D¼wiêk
-Vendor:      Jaroslav Kysela <perex@jcu.cz>
-Source0:     ftp://alsa.jcu.cz/pub/utils/%{name}-%{ver}-%{patchlvl}.tar.gz 
-Source1:     alsasound
+Summary:	Advanced Linux Sound Architecture (ALSA) - Utils
+Summary(pl):	Advanced Linux Sound Architecture (ALSA) - Narzêdzia
+Name:		alsa-utils
+Version:	%{ver}%{patchlvl}
+Release:	3
+Copyright:	GPL
+Group:		Applications/Sound
+Group(pl):	Aplikacje/D¼wiêk
+Source:		ftp://alsa.jcu.cz/pub/utils/%{name}-%{ver}-%{patchlvl}.tar.gz 
+Patch0:		alsa-utils-DESTDIR.patch
+Patch1:		alsa-utils-opt.patch
+BuildPrereq:	alsa-driver-devel
+BuildPrereq:	alsa-lib-devel
+BuildPrereq:	libstdc++-devel
+BuildPrereq:	ncurses-devel
+Requires:	alsa-driver
 BuildRoot:	/tmp/%{name}-%{version}-root
-URL:	     http://alsa.jcu.cz
-Requires:    alsa-driver
-Requires:    alsa-lib
-Patch0:	     %{name}-noroot.patch
-Patch1:	     %{name}-opt.patch
-Summary(pl): Advanced Linux Sound Architecture (ALSA) - Narzêdzia
 
 %description
 Advanced Linux Sound Architecture (ALSA) - Utils
@@ -29,68 +29,40 @@ alsamixer, amixer, aplay, arecord
 
 %prep
 %setup  -q -n %{name}-%{ver}-%{patchlvl}
-%patch  -p1
+%patch0 -p0
 %patch1 -p1
 
 %build
-./configure %{_target} --prefix=/usr
-OPT="$RPM_OPT_FLAGS" make
+./configure %{_target} \
+	--prefix=%{_prefix} \
+	--mandir=%{_mandir}
+
+make OPT="$RPM_OPT_FLAGS -I/usr/include/ncurses"
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,/etc/rc.d/init.d}
 
-install -d $RPM_BUILD_ROOT/{usr/{bin,man/man1},etc/rc.d/init.d}
-make prefix=$RPM_BUILD_ROOT/usr install
-rm $RPM_BUILD_ROOT%{_mandir}/man1/aplay.1
-echo ".so arecord.1" > $RPM_BUILD_ROOT%{_mandir}/man1/aplay.1
-strip $RPM_BUILD_ROOT/usr/{s,}bin/*
+make install \
+	DESTDIR=$RPM_BUILD_ROOT
 
-install %SOURCE1 $RPM_BUILD_ROOT/etc/rc.d/init.d/
-touch $RPM_BUILD_ROOT/etc/asound.conf
-
-gzip -9nf README ChangeLog amixer/README.first $RPM_BUILD_ROOT%{_mandir}/man1/*
+gzip -9nf README ChangeLog amixer/README.first \
+	$RPM_BUILD_ROOT%{_mandir}/man1/*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post
-/sbin/chkconfig --add alsasound
-
-%preun
-if [ "$1" = 0 ] ; then
-    /sbin/chkconfig --del alsasound
-fi
-    
 %files
 %defattr(644,root,root,755)
-%doc README.gz ChangeLog.gz amixer/README.first.gz
-
+%doc {README,ChangeLog,amixer/README.first}.gz
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_sbindir}/*
 %{_mandir}/man1/*
-%attr(750,root,root) /etc/rc.d/init.d/*
-%attr(600,root,root) %config(noreplace) /etc/asound.conf
 
 %changelog
-* Sat Feb 13 1999 Arkadiusz Mi¶kiewicz <misiek@misiek.eu.org>
-[0.3.0-pre3-1d]
-- /etc/rc.d/init.d/alsasound is now part of this package
-- gzipping instead bzip2ing
-- 755 instead 711 on binaries
-
-* Wed Jan 27 1999 Arkadiusz Mi¶kiewicz <misiek@misiek.eu.org>
-[0.3.0-pre3-1d]
-- new upstream release
-
-* Tue Jan 05 1999 Arkadiusz Mi¶kiewicz <misiek@misiek.eu.org>
-- alsactl was missing !
-- added optimalization
-
-* Mon Sep 28 1998 Arkadiusz Mi¶kiewicz <misiek@misiek.eu.org>
-- changed "-" to "_" (rpm doesn't like "-" in Name: or Version:)
-
-* Sun Sep 27 1998 Arkadiusz Mi¶kiewicz <misiek@misiek.eu.org>
-- rewrited spec file
-
-* Mon May 28 1998 Helge Jensen <slog@slog.dk>
-- Made SPEC file
+* Tue May 25 1999 Piotr Czerwiñski <pius@pld.org.pl> 
+  [0.3.0pre3-3]
+- package is FHS 2.0 compliant,
+- based on spec file made by Helge Jensen <slog@slog.dk>,
+- rewritten for PLD use by me and Arkadiusz Mi¶kiewicz <misiek@misiek.eu.org>,
+- pl translation by Arkadiusz Mi¶kiewicz <misiek@misiek.eu.org>.
