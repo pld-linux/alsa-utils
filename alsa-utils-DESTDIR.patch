@@ -1,35 +1,40 @@
---- Makefile.old	Tue May 25 15:13:25 1999
-+++ Makefile	Tue May 25 15:14:32 1999
-@@ -23,19 +23,19 @@
- 	@echo
+diff -urN alsa-utils-0.3.1.orig/aplay/Makefile alsa-utils-0.3.1/aplay/Makefile
+--- alsa-utils-0.3.1.orig/aplay/Makefile	Sat Jun  5 16:54:50 1999
++++ alsa-utils-0.3.1/aplay/Makefile	Sat Jun  5 17:03:18 1999
+@@ -356,12 +356,12 @@
+ 	$(LN_S) $< $@
  
- install: all
--	$(INSTALL) -m 755 -o root -g root -d ${sbindir}
--	$(INSTALL) -s -m 755 -o root -g root alsactl/alsactl ${sbindir}
--	$(INSTALL) -m 644 -o root -g root alsactl/alsactl.1 ${mandir}/man1
--	$(INSTALL) -m 755 -o root -g root -d ${bindir}
--	$(INSTALL) -s -m 755 -o root -g root aplay/aplay ${bindir}
--	ln -sf aplay ${bindir}/arecord
--	$(INSTALL) -s -m 755 -o root -g root amixer/amixer ${bindir}
--	$(INSTALL) -d -m 755 -o root -g root ${mandir}/man1
--	$(INSTALL) -m 644 -o root -g root amixer/amixer.1 ${mandir}/man1
--	$(INSTALL) -s -m 755 -o root -g root alsamixer/alsamixer ${bindir}
--	$(INSTALL) -m 644 -o root -g root alsamixer/alsamixer.1 ${mandir}/man1
--	$(INSTALL) -m 644 -o root -g root aplay/arecord.1 ${mandir}/man1
--	ln -sf arecord.1 ${mandir}/man1/aplay.1
-+	$(INSTALL) -m 755 -d $(DESTDIR)${sbindir}
-+	$(INSTALL) -s -m 755 alsactl/alsactl $(DESTDIR)${sbindir}
-+	$(INSTALL) -m 644 alsactl/alsactl.1 $(DESTDIR)${mandir}/man1
-+	$(INSTALL) -m 755 -d $(DESTDIR)${bindir}
-+	$(INSTALL) -s -m 755 aplay/aplay $(DESTDIR)${bindir}
-+	ln -sf aplay $(DESTDIR)${bindir}/arecord
-+	$(INSTALL) -s -m 755 amixer/amixer $(DESTDIR)${bindir}
-+	$(INSTALL) -d -m 755 $(DESTDIR)${mandir}/man1
-+	$(INSTALL) -m 644 amixer/amixer.1 $(DESTDIR)${mandir}/man1
-+	$(INSTALL) -s -m 755 alsamixer/alsamixer $(DESTDIR)${bindir}
-+	$(INSTALL) -m 644 alsamixer/alsamixer.1 $(DESTDIR)${mandir}/man1
-+	$(INSTALL) -m 644 aplay/arecord.1 $(DESTDIR)${mandir}/man1
-+	echo .so arecord.1 > $(DESTDIR)${mandir}/man1/aplay.1
+ install-exec-hook:
+-	rm -f $(bindir)/arecord
+-	(cd $(bindir) && $(LN_S) aplay arecord)
++	rm -f $(DESTDIR)$(bindir)/arecord
++	(cd $(DESTDIR)$(bindir) && $(LN_S) aplay arecord)
  
- clean:
- 	$(MAKE) -C include clean
+ install-data-hook:
+-	rm -f $(mandir)/man1/arecord.1
+-	(cd $(mandir)/man1 && $(LN_S) aplay.1 arecord.1)
++	rm -f $(DESTDIR)$(mandir)/man1/arecord.1
++	(cd $(DESTDIR)$(mandir)/man1 && $(LN_S) aplay.1 arecord.1)
+ 
+ # Tell versions [3.59,3.63) of GNU make to not export all variables.
+ # Otherwise a system limit (for SysV at least) may be exceeded.
+diff -urN alsa-utils-0.3.1.orig/aplay/Makefile.in alsa-utils-0.3.1/aplay/Makefile.in
+--- alsa-utils-0.3.1.orig/aplay/Makefile.in	Sat Jun  5 16:54:50 1999
++++ alsa-utils-0.3.1/aplay/Makefile.in	Sat Jun  5 17:03:30 1999
+@@ -356,12 +356,12 @@
+ 	$(LN_S) $< $@
+ 
+ install-exec-hook:
+-	rm -f $(bindir)/arecord
+-	(cd $(bindir) && $(LN_S) aplay arecord)
++	rm -f $(DESTDIR)$(bindir)/arecord
++	(cd $(DESTDIR)$(bindir) && $(LN_S) aplay arecord)
+ 
+ install-data-hook:
+-	rm -f $(mandir)/man1/arecord.1
+-	(cd $(mandir)/man1 && $(LN_S) aplay.1 arecord.1)
++	rm -f $(DESTDIR)$(mandir)/man1/arecord.1
++	(cd $(DESTDIR)$(mandir)/man1 && $(LN_S) aplay.1 arecord.1)
+ 
+ # Tell versions [3.59,3.63) of GNU make to not export all variables.
+ # Otherwise a system limit (for SysV at least) may be exceeded.
