@@ -1,10 +1,11 @@
 Summary:	Advanced Linux Sound Architecture (ALSA) - Utils
 Summary(pl):	Advanced Linux Sound Architecture (ALSA) - Narzêdzia
 Name:		alsa-utils
-Version:	0.5.9a
+Version:	0.5.9b
 Release:	1
 License:	GPL
 Group:		Applications/Sound
+Group(de):	Applikationen/Laut
 Group(pl):	Aplikacje/D¼wiêk
 Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
 Source1:	alsasound
@@ -42,15 +43,12 @@ amixer, aplay, arecord.
 %patch1 -p1
 
 %build
-LDFLAGS="-s"; export LDFLAGS
 cp aclocal.m4 acinclude.m4
 aclocal
 automake -c || :
 autoconf
-CPPFLAGS="-I/usr/include/ncurses" ; export CPPFLAGS
+CPPFLAGS="-I/usr/include/ncurses"
 CXXFLAGS="$RPM_OPT_FLAGS -fno-rtti -fno-exceptions"
-LDFLAGS="-s"
-export CPPFLAGS CXXFLAGS LDFLAGS
 %configure
 
 %{__make} 
@@ -65,8 +63,7 @@ install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/alsasound
 
 touch $RPM_BUILD_ROOT%{_sysconfdir}/asound.conf
 
-gzip -9nf README ChangeLog \
-	$RPM_BUILD_ROOT%{_mandir}/man1/*
+gzip -9nf README ChangeLog
 
 %post
 /sbin/chkconfig --add alsasound
