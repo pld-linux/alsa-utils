@@ -146,27 +146,8 @@ case "$1" in
 	$0 stop
 	$0 start
 	;;
-  detect)
-	# Start driver only in detect mode.
-	if [ -d /proc/asound ]; then
-	  if [ -f /proc/asound/detect ]; then
-	    show "ALSA is already running detection mode"; fail
-	    exit 0
-          else
-	    show "Shutting down sound driver:"
-	    driver_stop
-	    ok
-	  fi
-	fi
-	show "Starting sound detect module:"
-	detect_start
-	ok
-	if [ -d /var/lock/subsys ]; then
-	  touch /var/lock/subsys/alsasound
-	fi
-	;;
   *)
-        echo "Usage: $0 {start|stop|restart|detect}"
+        echo "Usage: $0 {start|stop|restart}"
         exit 1
 esac
 
