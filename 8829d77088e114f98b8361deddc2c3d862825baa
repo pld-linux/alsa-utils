@@ -1,0 +1,2 @@
+- added patches to compile from one spec
+- disabled isapnp support (broken, waiting for patches)
