@@ -15,7 +15,7 @@ Source1:	alsasound.init
 Source2:	alsa-oss-pcm
 Patch0:		%{name}-alsaconf.patch
 URL:		http://www.alsa-project.org/
-BuildRequires:	alsa-lib-devel >= 1.0.3
+BuildRequires:	alsa-lib-devel >= %{version}
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	flex
