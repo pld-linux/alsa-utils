@@ -5,12 +5,12 @@ Summary(pt_BR):	UtilitАrios para o ALSA (Advanced Linux Sound Architecture)
 Summary(ru):	Утилиты командной строки для ALSA project
 Summary(uk):	Утил╕ти командного рядка для ALSA project
 Name:		alsa-utils
-Version:	0.9.5
+Version:	0.9.6
 Release:	1
 License:	GPL
 Group:		Applications/Sound
 Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
-# Source0-md5:	b6071c658130325e9d4665e2e4db3180
+# Source0-md5:	b5a9bbf63502c727395ea5a4efd33b4a
 Source1:	alsasound
 Source2:	alsa-oss-pcm
 URL:		http://www.alsa-project.org/
