@@ -8,8 +8,8 @@ Group:		Applications/Sound
 Group(pl):	Aplikacje/D¼wiêk
 Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
 Source1:	alsasound
-Patch0:		alsa-utils-DESTDIR.patch
-Patch1:		alsa-utils-LDFLAGS.patch
+Patch0:		%{name}-DESTDIR.patch
+Patch1:		%{name}-LDFLAGS.patch
 URL:		http://www.alsa-project.org/
 BuildRequires:	libstdc++-devel
 BuildRequires:	ncurses-devel
