@@ -22,7 +22,7 @@
 #  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #
 #
-# For Polish Linux Distribution:
+# For PLD Linux Distribution:
 # chkconfig: 2345 87 14
 # description: ALSA driver
 #
