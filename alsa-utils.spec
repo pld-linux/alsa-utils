@@ -22,12 +22,12 @@ Prereq:		/sbin/chkconfig
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
-Advanced Linux Sound Architecture (ALSA) - Utils
-alsamixer, amixer, aplay, arecord
+Advanced Linux Sound Architecture (ALSA) - Utils alsamixer, amixer, aplay,
+arecord.
 
 %description -l pl
-Advanced Linux Sound Architecture (ALSA) - Narzêdzia
-alsamixer, amixer, aplay, arecord
+Advanced Linux Sound Architecture (ALSA) - Narzêdzia alsamixer, amixer,
+aplay, arecord.
 
 %prep
 %setup  -q
@@ -35,9 +35,11 @@ alsamixer, amixer, aplay, arecord
 %patch1 -p1
 
 %build
-CFLAGS="$RPM_OPT_FLAGS -I/usr/include/ncurses" ./configure %{_target_platform} \
-	--prefix=%{_prefix} \
-	--mandir=%{_mandir}
+autoconf
+CFLAGS="$RPM_OPT_FLAGS -I/usr/include/ncurses" LDFLAGS="-s" \
+CXXFLAGS="$RPM_OPT_FLAGS -fno-rtti -fno-exceptions" \
+./configure %{_target_platform} \
+	--prefix=%{_prefix}
 
 make 
 
@@ -80,14 +82,14 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc {README,ChangeLog}.gz
+%config(noreplace) /etc/asound.conf
+%config(noreplace) /etc/xamixer.conf
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_sbindir}/*
 
 %{_mandir}/man1/*
 
 %attr(754,root,root) /etc/rc.d/init.d/*
-%attr(644,root,root) %config /etc/asound.conf
-%attr(644,root,root) %config /etc/xamixer.conf
 
 %changelog
 * Sat Jun 05 1999 Arkadiusz Mi¶kiewicz <misiek@pld.org.pl>
