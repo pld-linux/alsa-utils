@@ -16,7 +16,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	flex
 BuildRequires:	libtool
-BuildRequires:	alsa-lib >= 0.5.5
+BuildRequires:	alsa-lib-devel >= 0.5.5
 Prereq:		/sbin/depmod
 Prereq:		/sbin/ldconfig
 Prereq:		/sbin/chkconfig
