@@ -100,7 +100,7 @@ Skrypt init dla Advanced Linux Sound Architecture.
 rm -f missing
 %{__aclocal}
 %{__autoconf}
-%{__automake}
+%{__automake} --add-missing
 CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
 CXXFLAGS="%{rpmcflags} -fno-rtti -fno-exceptions"
 %configure
