@@ -41,14 +41,14 @@ rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT/{usr/{bin,man/man1},etc/rc.d/init.d}
 make prefix=$RPM_BUILD_ROOT/usr install
-rm $RPM_BUILD_ROOT/usr/man/man1/aplay.1
-echo ".so arecord.1" > $RPM_BUILD_ROOT/usr/man/man1/aplay.1
+rm $RPM_BUILD_ROOT%{_mandir}/man1/aplay.1
+echo ".so arecord.1" > $RPM_BUILD_ROOT%{_mandir}/man1/aplay.1
 strip $RPM_BUILD_ROOT/usr/{s,}bin/*
 
 install %SOURCE1 $RPM_BUILD_ROOT/etc/rc.d/init.d/
 touch $RPM_BUILD_ROOT/etc/asound.conf
 
-gzip -9nf README ChangeLog amixer/README.first $RPM_BUILD_ROOT/usr/man/man1/*
+gzip -9nf README ChangeLog amixer/README.first $RPM_BUILD_ROOT%{_mandir}/man1/*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -67,7 +67,7 @@ fi
 
 %attr(755,root,root) /usr/bin/*
 %attr(755,root,root) /usr/sbin/*
-%attr(644,root,man ) /usr/man/man1/*
+%attr(644,root,man ) %{_mandir}/man1/*
 %attr(750,root,root) /etc/rc.d/init.d/*
 %attr(600,root,root) %config(noreplace) /etc/asound.conf
 
