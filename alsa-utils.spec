@@ -2,7 +2,7 @@ Summary:	Advanced Linux Sound Architecture (ALSA) - Utils
 Summary(pl):	Advanced Linux Sound Architecture (ALSA) - Narzêdzia
 Name:		alsa-utils
 Version:	0.5.9b
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Sound
 Group(de):	Applikationen/Laut
@@ -48,7 +48,7 @@ aclocal
 automake -c || :
 autoconf
 CPPFLAGS="-I/usr/include/ncurses"
-CXXFLAGS="$RPM_OPT_FLAGS -fno-rtti -fno-exceptions"
+CXXFLAGS="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-O -g} -fno-rtti -fno-exceptions"
 %configure
 
 %{__make} 
