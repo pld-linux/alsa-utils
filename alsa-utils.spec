@@ -81,6 +81,17 @@ Utilitários para o ALSA, a arquitetura de som avançada para o Linux.
  - amixer        - Í¦ËÛÅÒ, ÑËÉÊ ËÅÒÕ¤ÔØÓÑ Ú ËÏÍÁÎÄÎÏÇÏ ÒÑÄËÁ
  - alsamixer     - Í¦ËÛÅÒ Ú ¦ÎÔÅÒÆÅÊÓÏÍ ncurses
 
+%package init
+Summary:	Init script for Advanced Linux Sound Architecture
+Summary(pl):	Skrypt init dla Advanced Linux Sound Architecture
+Group:		Applications/Sound
+Requires:	%{name} = %{version}
+
+%description init
+Init script for Advanced Linux Sound Architecture.
+
+%description init -l pl
+Skrypt init dla Advanced Linux Sound Architecture.
 
 %prep
 %setup -q
@@ -110,9 +121,7 @@ echo ".so aplay.1" > $RPM_BUILD_ROOT%{_mandir}/man1/arecord.1
 
 touch $RPM_BUILD_ROOT%{_sysconfdir}/asound.conf
 
-gzip -9nf README ChangeLog
-
-%post
+%post init
 /sbin/chkconfig --add alsasound
 if [ -f /var/lock/subsys/alsasound ]; then
 	/etc/rc.d/init.d/alsasound restart >&2
@@ -120,7 +129,7 @@ else
 	echo "Run \"/etc/rc.d/init.d/alsasound start\" to start ALSA %{version} services."
 fi
 
-%preun
+%preun init
 if [ "$1" = "0" ]; then
 	if [ -f /var/lock/subsys/alsasound ]; then
 		/etc/rc.d/init.d/alsasound stop >&2
@@ -133,12 +142,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz
+%doc README ChangeLog
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/asound.conf
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_sbindir}/*
-%attr(754,root,root) /etc/rc.d/init.d/*
-%config(noreplace) %verify(not size mtime md5) /etc/sysconfig/*
 
 %{_mandir}/man1/aconnect.1*
 %{_mandir}/man1/alsactl.1*
@@ -147,3 +154,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/aplay.1*
 %{_mandir}/man1/arecord.1*
 %{_mandir}/man1/aseqnet.1*
+
+%files init
+%defattr(644,root,root,755)
+%attr(754,root,root) /etc/rc.d/init.d/*
+%config(noreplace) %verify(not size mtime md5) /etc/sysconfig/*
