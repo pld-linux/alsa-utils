@@ -6,7 +6,7 @@ Release:	1
 License:	GPL
 Group:		Applications/Sound
 Group(pl):	Aplikacje/D¼wiêk
-Source0:	ftp://ftp.alsa-project.org/pub/utils/alsa-utils-%{version}.tar.bz2
+Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
 Source1:	alsasound
 Patch0:		alsa-utils-DESTDIR.patch
 URL:		http://www.alsa-project.org/
@@ -28,12 +28,12 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_kernel_ver	%(grep UTS_RELEASE /usr/src/linux/include/linux/version.h 2>/dev/null | cut -d'"' -f2)
 
 %description
-Advanced Linux Sound Architecture (ALSA) - Utils alsamixer, amixer, aplay,
-arecord.
+Advanced Linux Sound Architecture (ALSA) - Utils alsamixer, amixer,
+aplay, arecord.
 
 %description -l pl
-Advanced Linux Sound Architecture (ALSA) - Narzêdzia alsamixer, amixer,
-aplay, arecord.
+Advanced Linux Sound Architecture (ALSA) - Narzêdzia alsamixer,
+amixer, aplay, arecord.
 
 %prep
 %setup -q
