@@ -27,7 +27,6 @@ ExcludeArch:	sparc64
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	/etc
-%define		_kernel_ver	%(grep UTS_RELEASE /usr/src/linux/include/linux/version.h 2>/dev/null | cut -d'"' -f2)
 
 %description
 Advanced Linux Sound Architecture (ALSA) - Utils alsamixer, amixer,
