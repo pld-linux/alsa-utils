@@ -1,5 +1,5 @@
 # <#|*> <Playback|Capture> <app_name> <fragments> <fragment_size> [<options>]
-# First column contains card ID. It can be number as in /proc/asouns/[0-9]
+# First column contains card ID. It can be number as in /proc/asound/[0-9]
 # symlink or asterisk (*) which matches all cards.
 * Playback galeon 0 0 non-block
 * Playback mozilla 0 0 non-block
