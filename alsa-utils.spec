@@ -6,13 +6,14 @@ Summary(ru):	Утилиты командной строки для ALSA project
 Summary(uk):	Утил╕ти командного рядка для ALSA project
 Name:		alsa-utils
 Version:	1.0.4
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Sound
 Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
 # Source0-md5:	26de6ddd3b6ff44b79b163c16642f375
 Source1:	alsasound.init
 Source2:	alsa-oss-pcm
+Patch0:		%{name}-alsaconf.patch
 URL:		http://www.alsa-project.org/
 BuildRequires:	alsa-lib-devel >= 1.0.3
 BuildRequires:	autoconf
@@ -88,11 +89,12 @@ Skrypt init dla Advanced Linux Sound Architecture.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
-rm -f missing
 %{__aclocal}
 %{__autoconf}
+%{__autoheader}
 %{__automake}
 CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
 CXXFLAGS="%{rpmcflags} -fno-rtti -fno-exceptions"
