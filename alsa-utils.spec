@@ -64,14 +64,12 @@ if test -r /var/run/alsasound.pid; then
 else
     echo "Run \"/etc/rc.d/init.d/alsasound start\" to start alsasound daemon."
 fi
-/sbin/depmod -a
 
 %preun
 if [ "$1" = "0" ]; then
     /sbin/chkconfig --del alsasound
     /etc/rc.d/init.d/alsasound stop >&2
 fi
-/sbin/depmod -a
 
 %clean
 rm -rf $RPM_BUILD_ROOT
