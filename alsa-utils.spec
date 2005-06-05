@@ -5,17 +5,16 @@ Summary(pt_BR):	UtilitАrios para o ALSA (Advanced Linux Sound Architecture)
 Summary(ru):	Утилиты командной строки для ALSA project
 Summary(uk):	Утил╕ти командного рядка для ALSA project
 Name:		alsa-utils
-Version:	1.0.8
-Release:	2
+Version:	1.0.9a
+Release:	1
 License:	GPL
 Group:		Applications/Sound
 Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
-# Source0-md5:	c72d0efa9c88770a10733ec2abc1a872
+# Source0-md5:	d4b77e9fe0311772293e402fdd634ad2
 Source1:	alsasound.init
 Source2:	alsa-oss-pcm
-Patch0:		%{name}-alsaconf.patch
 URL:		http://www.alsa-project.org/
-BuildRequires:	alsa-lib-devel >= %{version}
+BuildRequires:	alsa-lib-devel >= 1.0.9
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	flex
@@ -86,7 +85,6 @@ Skrypt init dla Advanced Linux Sound Architecture.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %{__aclocal}
@@ -136,10 +134,11 @@ fi
 %files -f alsaconf.lang
 %defattr(644,root,root,755)
 %doc README ChangeLog
-%config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/asound.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/asound.conf
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_sbindir}/*
-
+%{_datadir}/alsa/speaker-test
+%{_datadir}/sounds/alsa
 %{_mandir}/man1/aconnect.1*
 %{_mandir}/man1/alsactl.1*
 %{_mandir}/man1/alsamixer.1*
@@ -150,11 +149,13 @@ fi
 %{_mandir}/man1/arecord.1*
 %{_mandir}/man1/arecordmidi.1*
 %{_mandir}/man1/aseqnet.1*
+%{_mandir}/man1/aseqdump.1*
 %{_mandir}/man1/iecset.1*
 %{_mandir}/man1/speaker-test.1*
 %{_mandir}/man8/alsaconf.8*
+%lang(fr) %{_mandir}/fr/man8/alsaconf.8*
 
 %files init
 %defattr(644,root,root,755)
 %attr(754,root,root) /etc/rc.d/init.d/*
-%config(noreplace) %verify(not size mtime md5) /etc/sysconfig/*
+%config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/*
