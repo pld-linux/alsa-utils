@@ -18,6 +18,7 @@ BuildRequires:	alsa-lib-devel >= 1.0.9
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	flex
+BuildRequires:	gettext-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	ncurses-devel
