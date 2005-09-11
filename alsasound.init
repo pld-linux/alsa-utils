@@ -70,7 +70,7 @@ driver_start()
   #
   if [ -x $alsactl ]; then
     if [ -f /etc/asound.state ]; then
-      if [ "$(kernelver)" < "002006012" ]; then
+      if [ "$(kernelver)" -lt "002006012" ]; then
 	for i in 1 2 3 4; do
 	  [ -a /dev/snd/controlC0 ] && break
 	  sleep 1
