@@ -5,12 +5,13 @@ Summary(pt_BR):	UtilitАrios para o ALSA (Advanced Linux Sound Architecture)
 Summary(ru):	Утилиты командной строки для ALSA project
 Summary(uk):	Утил╕ти командного рядка для ALSA project
 Name:		alsa-utils
-Version:	1.0.9a
-Release:	2
+Version:	1.0.10
+%define		_rc	rc3
+Release:	0.%{_rc}.1
 License:	GPL
 Group:		Applications/Sound
-Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
-# Source0-md5:	d4b77e9fe0311772293e402fdd634ad2
+Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}%{_rc}.tar.bz2
+# Source0-md5:	234fd15c5486e22eb2d0ac7289d6caa5
 Source1:	alsasound.init
 Source2:	alsa-oss-pcm
 URL:		http://www.alsa-project.org/
@@ -85,7 +86,8 @@ Init script for Advanced Linux Sound Architecture.
 Skrypt init dla Advanced Linux Sound Architecture.
 
 %prep
-%setup -q
+#setup -q
+%setup -q -n %{name}-%{version}%{_rc}
 
 %build
 %{__aclocal}
@@ -93,7 +95,7 @@ Skrypt init dla Advanced Linux Sound Architecture.
 %{__autoheader}
 %{__automake}
 CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
-CXXFLAGS="%{rpmcflags} -fno-rtti -fno-exceptions"
+CXXFLAGS="%{rpmcxxflags} -fno-rtti -fno-exceptions"
 %configure
 %{__make}
 
@@ -111,7 +113,7 @@ echo ".so aplay.1" > $RPM_BUILD_ROOT%{_mandir}/man1/arecord.1
 
 touch $RPM_BUILD_ROOT%{_sysconfdir}/asound.conf
 
-%find_lang alsaconf
+%find_lang alsa-utils --all-name
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -132,7 +134,7 @@ if [ "$1" = "0" ]; then
 	/sbin/chkconfig --del alsasound
 fi
 
-%files -f alsaconf.lang
+%files -f alsa-utils.lang
 %defattr(644,root,root,755)
 %doc README ChangeLog
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/asound.conf
