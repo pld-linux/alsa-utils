@@ -130,7 +130,7 @@ case "$1" in
 		fi
 	else
 		if [ -f /proc/asound/detect ]; then
-			show "Shutting down sound detect module:"
+			show "Shutting down sound detect module"
 			detect_stop
 			ok
 			driver_start
@@ -147,7 +147,7 @@ case "$1" in
   stop)
 	# Stop daemons.
 	if [ -d /proc/asound ]; then
-		show "Shutting down sound driver:"
+		show "Shutting down sound driver"
 		busy
 		if [ -f /proc/asound/detect ]; then
 			detect_stop
