@@ -6,12 +6,11 @@ Summary(ru):	Утилиты командной строки для ALSA project
 Summary(uk):	Утил╕ти командного рядка для ALSA project
 Name:		alsa-utils
 Version:	1.0.11
-%define	snap	rc5
-Release:	0.%{snap}.1
+Release:	1
 License:	GPL
 Group:		Applications/Sound
-Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}%{snap}.tar.bz2
-# Source0-md5:	78b50cd8fd05739e5b57e15b33d46dca
+Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
+# Source0-md5:	ba9b8010120701d0f6daf061d392cfa2
 Source1:	alsasound.init
 Source2:	alsa-oss-pcm
 URL:		http://www.alsa-project.org/
@@ -87,7 +86,7 @@ Init script for Advanced Linux Sound Architecture.
 Skrypt init dla Advanced Linux Sound Architecture.
 
 %prep
-%setup -q -n %{name}-%{version}%{snap}
+%setup -q
 
 %build
 %{__aclocal}
