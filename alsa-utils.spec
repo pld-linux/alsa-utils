@@ -5,24 +5,24 @@ Summary(pt_BR):	UtilitАrios para o ALSA (Advanced Linux Sound Architecture)
 Summary(ru):	Утилиты командной строки для ALSA project
 Summary(uk):	Утил╕ти командного рядка для ALSA project
 Name:		alsa-utils
-Version:	1.0.11
+Version:	1.0.12
 Release:	1
 License:	GPL
 Group:		Applications/Sound
 Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
-# Source0-md5:	ba9b8010120701d0f6daf061d392cfa2
+# Source0-md5:	a3b904040418f18d4276687388429907
 Source1:	alsasound.init
 Source2:	alsa-oss-pcm
 URL:		http://www.alsa-project.org/
-BuildRequires:	alsa-lib-devel >= 1.0.10
-BuildRequires:	autoconf
+BuildRequires:	alsa-lib-devel >= 1.0.12
+BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake
 BuildRequires:	flex
-BuildRequires:	gettext-devel
-BuildRequires:	libstdc++-devel
+BuildRequires:	gettext-devel >= 0.14
 BuildRequires:	libtool
 BuildRequires:	ncurses-devel
 BuildRequires:	rpmbuild(macros) >= 1.268
+Requires:	alsa-lib >= 1.0.12
 Requires:	awk
 Requires:	dialog
 Requires:	diffutils
@@ -78,6 +78,7 @@ Summary(pl):	Skrypt init dla Advanced Linux Sound Architecture
 Group:		Applications/Sound
 Requires(post,preun):	/sbin/chkconfig
 Requires:	%{name} = %{version}-%{release}
+Requires:	rc-scripts
 
 %description init
 Init script for Advanced Linux Sound Architecture.
@@ -89,6 +90,7 @@ Skrypt init dla Advanced Linux Sound Architecture.
 %setup -q
 
 %build
+%{__gettextize}
 %{__aclocal}
 %{__autoconf}
 %{__autoheader}
