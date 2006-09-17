@@ -117,10 +117,8 @@ detect_start()
   /sbin/modprobe snd-detect
 }
 
-# See how we were called.
-case "$1" in
-  start)
-	# Start driver.
+# Start driver.
+start() {
 	if [ ! -d /proc/asound ]; then
 		driver_start
 		if [ -d /proc/asound ]; then
@@ -143,9 +141,10 @@ case "$1" in
 			msg_already_running "ALSA driver"
 		fi
 	fi
-	;;
-  stop)
-	# Stop daemons.
+}
+
+# Stop daemons.
+stop() {
 	if [ -d /proc/asound ]; then
 		show "Shutting down sound driver"
 		busy
@@ -162,11 +161,19 @@ case "$1" in
 	else
 		msg_not_running "ALSA driver"
 	fi
+fi
+
+# See how we were called.
+case "$1" in
+  start)
+  	start
+	;;
+  stop)
+	stop
 	;;
   restart|force-reload)
-	$0 stop
-	$0 start
-	exit $?
+	stop
+	start
 	;;
   status)
 	# TODO
