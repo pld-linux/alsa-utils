@@ -159,7 +159,8 @@ stop() {
 	else
 		msg_not_running "ALSA driver"
 	fi
-fi
+}
+
 
 # See how we were called.
 case "$1" in
