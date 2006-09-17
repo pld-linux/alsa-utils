@@ -30,8 +30,6 @@
 # Source function library.
 . /etc/rc.d/init.d/functions
 
-alsactl=/usr/sbin/alsactl
-
 if [ $(kernelverser) = "002006" ]; then
 	MODULES_CONF=/etc/modprobe.conf
 elif [ -r /etc/modules.conf ]; then
@@ -68,7 +66,7 @@ driver_start()
   #
   # restore driver settings
   #
-  if [ -x $alsactl ]; then
+  if [ -x /usr/sbin/alsactl ]; then
     if [ -f /etc/asound.state ]; then
       if [ "$(kernelver)" -lt "002006012" ]; then
 	for i in 1 2 3 4; do
@@ -76,7 +74,7 @@ driver_start()
 	  sleep 1
 	done
       fi
-      $alsactl restore
+      /usr/sbin/alsactl restore
     fi
   else
     show "ERROR: alsactl not found"; fail
@@ -98,8 +96,8 @@ driver_stop()
   #
   # store driver settings
   #
-  if [ -x $alsactl ]; then
-    $alsactl store
+  if [ -x /usr/sbin/alsactl ]; then
+    /usr/sbin/alsactl store
   else
     show '!!!alsactl not found!!!'; fail
   fi
