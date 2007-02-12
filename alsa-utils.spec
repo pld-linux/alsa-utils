@@ -1,9 +1,9 @@
 Summary:	Advanced Linux Sound Architecture (ALSA) - Utils
-Summary(es.UTF-8):   Utilitarios para ALSA (Advanced Linux Sound Architecture)
-Summary(pl.UTF-8):   Advanced Linux Sound Architecture (ALSA) - Narzędzia
-Summary(pt_BR.UTF-8):   Utilitários para o ALSA (Advanced Linux Sound Architecture)
-Summary(ru.UTF-8):   Утилиты командной строки для ALSA project
-Summary(uk.UTF-8):   Утиліти командного рядка для ALSA project
+Summary(es.UTF-8):	Utilitarios para ALSA (Advanced Linux Sound Architecture)
+Summary(pl.UTF-8):	Advanced Linux Sound Architecture (ALSA) - Narzędzia
+Summary(pt_BR.UTF-8):	Utilitários para o ALSA (Advanced Linux Sound Architecture)
+Summary(ru.UTF-8):	Утилиты командной строки для ALSA project
+Summary(uk.UTF-8):	Утиліти командного рядка для ALSA project
 Name:		alsa-utils
 Version:	1.0.13
 Release:	1
@@ -74,7 +74,7 @@ Utilitários para o ALSA, a arquitetura de som avançada para o Linux.
 
 %package init
 Summary:	Init script for Advanced Linux Sound Architecture
-Summary(pl.UTF-8):   Skrypt init dla Advanced Linux Sound Architecture
+Summary(pl.UTF-8):	Skrypt init dla Advanced Linux Sound Architecture
 Group:		Applications/Sound
 Requires(post,preun):	/sbin/chkconfig
 Requires:	%{name} = %{version}-%{release}
