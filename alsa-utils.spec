@@ -1,9 +1,9 @@
 Summary:	Advanced Linux Sound Architecture (ALSA) - Utils
-Summary(es):	Utilitarios para ALSA (Advanced Linux Sound Architecture)
-Summary(pl):	Advanced Linux Sound Architecture (ALSA) - NarzЙdzia
-Summary(pt_BR):	UtilitАrios para o ALSA (Advanced Linux Sound Architecture)
-Summary(ru):	Утилиты командной строки для ALSA project
-Summary(uk):	Утил╕ти командного рядка для ALSA project
+Summary(es.UTF-8):   Utilitarios para ALSA (Advanced Linux Sound Architecture)
+Summary(pl.UTF-8):   Advanced Linux Sound Architecture (ALSA) - Narzд≥dzia
+Summary(pt_BR.UTF-8):   Utilitц║rios para o ALSA (Advanced Linux Sound Architecture)
+Summary(ru.UTF-8):   пёя┌п╦п╩п╦я┌я▀ п╨п╬п╪п╟п╫п╢п╫п╬п╧ я│я┌я─п╬п╨п╦ п╢п╩я▐ ALSA project
+Summary(uk.UTF-8):   пёя┌п╦п╩я√я┌п╦ п╨п╬п╪п╟п╫п╢п╫п╬пЁп╬ я─я▐п╢п╨п╟ п╢п╩я▐ ALSA project
 Name:		alsa-utils
 Version:	1.0.13
 Release:	1
@@ -38,43 +38,43 @@ This packages contains command line utilities for the ALSA project:
 - amixer - a command line mixer
 - alsamixer - ncurses mixer
 
-%description -l es
+%description -l es.UTF-8
 Utilitarios para el sistema ALSA, la arquitetura avanzada de sonido
 para Linux.
 
-%description -l pl
-Pakiet zawiera nastЙpuj╠ce, dziaЁaj╠ce z linii poleceЯ, narzЙdzia dla
+%description -l pl.UTF-8
+Pakiet zawiera nastд≥pujд┘ce, dziaе┌ajд┘ce z linii poleceе└, narzд≥dzia dla
 projektu ALSA (Advanced Linux Sound Architecture):
-- alsactl - narzЙdzie do zapamiЙtywania / przywracania ustawieЯ karty
-  d╪wiЙkowej
-- aplay/arecord - narzЙdzia do odtwarzania / nagrywania plikСw .wav,
+- alsactl - narzд≥dzie do zapamiд≥tywania / przywracania ustawieе└ karty
+  dе╨wiд≥kowej
+- aplay/arecord - narzд≥dzia do odtwarzania / nagrywania plikцЁw .wav,
   .voc, .au
-- amixer - mikser dziaЁaj╠cy z linii poleceЯ
+- amixer - mikser dziaе┌ajд┘cy z linii poleceе└
 - alsamixer - mikser z interfejsem opartym o ncurses
 
-%description -l pt_BR
-UtilitАrios para o ALSA, a arquitetura de som avanГada para o Linux.
+%description -l pt_BR.UTF-8
+Utilitц║rios para o ALSA, a arquitetura de som avanц╖ada para o Linux.
 
-%description -l ru
-Этот пакет содержит утилиты командной строки для ALSA project:
-- alsactl - утилита для сохранения/восстановления настроек звуковой
-  карты
-- aplay/arecord - утилита для записи/проигрывания файлов .wav, .voc,
+%description -l ru.UTF-8
+п╜я┌п╬я┌ п©п╟п╨п╣я┌ я│п╬п╢п╣я─п╤п╦я┌ я┐я┌п╦п╩п╦я┌я▀ п╨п╬п╪п╟п╫п╢п╫п╬п╧ я│я┌я─п╬п╨п╦ п╢п╩я▐ ALSA project:
+- alsactl - я┐я┌п╦п╩п╦я┌п╟ п╢п╩я▐ я│п╬я┘я─п╟п╫п╣п╫п╦я▐/п╡п╬я│я│я┌п╟п╫п╬п╡п╩п╣п╫п╦я▐ п╫п╟я│я┌я─п╬п╣п╨ п╥п╡я┐п╨п╬п╡п╬п╧
+  п╨п╟я─я┌я▀
+- aplay/arecord - я┐я┌п╦п╩п╦я┌п╟ п╢п╩я▐ п╥п╟п©п╦я│п╦/п©я─п╬п╦пЁя─я▀п╡п╟п╫п╦я▐ я└п╟п╧п╩п╬п╡ .wav, .voc,
   .au
-- amixer - микшер, управляемый из командной строки
-- alsamixer - микшер с интерфейсом ncurses
+- amixer - п╪п╦п╨я┬п╣я─, я┐п©я─п╟п╡п╩я▐п╣п╪я▀п╧ п╦п╥ п╨п╬п╪п╟п╫п╢п╫п╬п╧ я│я┌я─п╬п╨п╦
+- alsamixer - п╪п╦п╨я┬п╣я─ я│ п╦п╫я┌п╣я─я└п╣п╧я│п╬п╪ ncurses
 
-%description -l uk
-Цей пакет м╕стить утил╕ти командного рядка для ALSA project:
-- alsactl - утил╕та для збереження/в╕дновлення настанов звуково╖ карти
-- aplay/arecord - утил╕та для запису/програвання файл╕в .wav, .voc,
+%description -l uk.UTF-8
+п╕п╣п╧ п©п╟п╨п╣я┌ п╪я√я│я┌п╦я┌я▄ я┐я┌п╦п╩я√я┌п╦ п╨п╬п╪п╟п╫п╢п╫п╬пЁп╬ я─я▐п╢п╨п╟ п╢п╩я▐ ALSA project:
+- alsactl - я┐я┌п╦п╩я√я┌п╟ п╢п╩я▐ п╥п╠п╣я─п╣п╤п╣п╫п╫я▐/п╡я√п╢п╫п╬п╡п╩п╣п╫п╫я▐ п╫п╟я│я┌п╟п╫п╬п╡ п╥п╡я┐п╨п╬п╡п╬я≈ п╨п╟я─я┌п╦
+- aplay/arecord - я┐я┌п╦п╩я√я┌п╟ п╢п╩я▐ п╥п╟п©п╦я│я┐/п©я─п╬пЁя─п╟п╡п╟п╫п╫я▐ я└п╟п╧п╩я√п╡ .wav, .voc,
   .au
-- amixer - м╕кшер, який керу╓ться з командного рядка
-- alsamixer - м╕кшер з ╕нтерфейсом ncurses
+- amixer - п╪я√п╨я┬п╣я─, я▐п╨п╦п╧ п╨п╣я─я┐я■я┌я▄я│я▐ п╥ п╨п╬п╪п╟п╫п╢п╫п╬пЁп╬ я─я▐п╢п╨п╟
+- alsamixer - п╪я√п╨я┬п╣я─ п╥ я√п╫я┌п╣я─я└п╣п╧я│п╬п╪ ncurses
 
 %package init
 Summary:	Init script for Advanced Linux Sound Architecture
-Summary(pl):	Skrypt init dla Advanced Linux Sound Architecture
+Summary(pl.UTF-8):   Skrypt init dla Advanced Linux Sound Architecture
 Group:		Applications/Sound
 Requires(post,preun):	/sbin/chkconfig
 Requires:	%{name} = %{version}-%{release}
@@ -83,7 +83,7 @@ Requires:	rc-scripts
 %description init
 Init script for Advanced Linux Sound Architecture.
 
-%description init -l pl
+%description init -l pl.UTF-8
 Skrypt init dla Advanced Linux Sound Architecture.
 
 %prep
