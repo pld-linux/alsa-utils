@@ -5,16 +5,16 @@ Summary(pt_BR.UTF-8):	Utilitários para o ALSA (Advanced Linux Sound Architectur
 Summary(ru.UTF-8):	Утилиты командной строки для ALSA project
 Summary(uk.UTF-8):	Утиліти командного рядка для ALSA project
 Name:		alsa-utils
-Version:	1.0.13
+Version:	1.0.14
 Release:	1
 License:	GPL
 Group:		Applications/Sound
 Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
-# Source0-md5:	dfe4bb5d3217f3ec662b172ce8397cf0
+# Source0-md5:	6d3009c157ac6fc803696d6590a48366
 Source1:	alsasound.init
 Source2:	alsa-oss-pcm
 URL:		http://www.alsa-project.org/
-BuildRequires:	alsa-lib-devel >= 1.0.13
+BuildRequires:	alsa-lib-devel >= 1.0.14
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake
 BuildRequires:	flex
@@ -22,7 +22,7 @@ BuildRequires:	gettext-devel >= 0.14
 BuildRequires:	libtool
 BuildRequires:	ncurses-devel
 BuildRequires:	rpmbuild(macros) >= 1.268
-Requires:	alsa-lib >= 1.0.13
+Requires:	alsa-lib >= 1.0.14
 Requires:	awk
 Requires:	dialog
 Requires:	diffutils
