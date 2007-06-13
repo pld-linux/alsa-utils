@@ -86,7 +86,7 @@ detect_stop()
   #
   # remove all sound modules
   #
-  /sbin/lsmod | awk '/^snd/ { print $0 }' | while read line; do \
+  /sbin/lsmod | awk '/^(snd|ac97_bus)/ { print $0 }' | while read line; do \
      /sbin/rmmod `echo $line | cut -d ' ' -f 1`; \
   done
 }
