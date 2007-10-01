@@ -30,14 +30,6 @@
 # Source function library.
 . /etc/rc.d/init.d/functions
 
-if [ $(kernelverser) = "002006" ]; then
-	MODULES_CONF=/etc/modprobe.conf
-elif [ -r /etc/modules.conf ]; then
-	MODULES_CONF=/etc/modules.conf
-else
-	MODULES_CONF=/etc/conf.modules
-fi
-
 driver_start()
 {
   #
@@ -46,14 +38,14 @@ driver_start()
   if OLDLOGLEV=$(awk '{print $1}' < /proc/sys/kernel/printk 2> /dev/null); then
   	/sbin/loglevel 1
   fi
-  awk '$1 == "alias" && $3 != "off" && ($2 ~ /^snd-card-[0-9]$/) {print $2}' < $MODULES_CONF | \
+  modprobe -c | awk '$1 == "alias" && $3 != "off" && ($2 ~ /^snd-card-[0-9]$/) {print $2}' | \
     while read line; do \
       msg_starting "sound driver: $line"
       busy
       /sbin/modprobe $line
       ok
     done
-  awk '$1 == "alias" && $3 != "off" && ($2 ~ /^sound-service-[0-9]-[0-9]+$/) {print $2}' < $MODULES_CONF | \
+  modprobe -c | awk '$1 == "alias" && $3 != "off" && ($2 ~ /^sound-service-[0-9]-[0-9]+$/) {print $2}' | \
     while read line; do \
       msg_starting "sound driver: $line"
       busy
