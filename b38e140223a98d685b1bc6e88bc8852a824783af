@@ -1,0 +1,2 @@
+- release 2: regenerate all automake, autoconf files for allow build also
+  in automake 1.4b environment.
