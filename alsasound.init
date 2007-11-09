@@ -35,27 +35,21 @@ driver_start()
   #
   # insert all sound modules
   #
-  if OLDLOGLEV=$(awk '{print $1}' < /proc/sys/kernel/printk 2> /dev/null); then
-  	/sbin/loglevel 1
-  fi
-  modprobe -c | awk '$1 == "alias" && $3 != "off" && ($2 ~ /^snd-card-[0-9]$/) {print $2}' | \
+  modprobe -c | awk '$1 == "alias" && $3 != "off" && ($2 ~ /^snd-card-[0-9]$/) {print $3}' | \
     while read line; do \
       msg_starting "sound driver: $line"
       busy
       /sbin/modprobe $line
       ok
     done
-  modprobe -c | awk '$1 == "alias" && $3 != "off" && ($2 ~ /^sound-service-[0-9]-[0-9]+$/) {print $2}' | \
+  modprobe -c | awk '$1 == "alias" && $3 != "off" && ($2 ~ /^sound-service-[0-9]-[0-9]+$/) {print $3}' | \
     while read line; do \
       msg_starting "sound driver: $line"
       busy
       /sbin/modprobe $line
       ok
     done
-  if [ -n "$OLDLOGLEV" ]; then
-	/sbin/loglevel "$OLDLOGLEV"
-  fi
-  #
+
   # restore driver settings
   #
   if [ -x /usr/sbin/alsactl ]; then
