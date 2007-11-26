@@ -14,6 +14,7 @@ Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
 Source1:	alsasound.init
 Source2:	alsa-oss-pcm
 URL:		http://www.alsa-project.org/
+Patch0:		%{name}-fast_sampling.patch
 BuildRequires:	alsa-lib-devel >= 1.0.14
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake
@@ -89,6 +90,7 @@ Skrypt init dla Advanced Linux Sound Architecture.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__gettextize}
