@@ -28,7 +28,7 @@ Requires:	awk
 Requires:	dialog
 Requires:	diffutils
 Requires:	which
-Suggest:	gpm
+Suggests:	gpm
 Obsoletes:	alsaconf
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
