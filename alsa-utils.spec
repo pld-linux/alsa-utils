@@ -6,7 +6,7 @@ Summary(ru.UTF-8):	Утилиты командной строки для ALSA pr
 Summary(uk.UTF-8):	Утиліти командного рядка для ALSA project
 Name:		alsa-utils
 Version:	1.0.16
-Release:	4
+Release:	7
 # some apps GPL v2, some GPL v2+
 License:	GPL v2
 Group:		Applications/Sound
