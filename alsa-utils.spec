@@ -142,6 +142,7 @@ fi
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/asound.conf
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_sbindir}/*
+%{_datadir}/alsa/init
 %{_datadir}/alsa/speaker-test
 %{_datadir}/sounds/alsa
 %{_mandir}/man1/aconnect.1*
@@ -157,6 +158,7 @@ fi
 %{_mandir}/man1/aseqdump.1*
 %{_mandir}/man1/iecset.1*
 %{_mandir}/man1/speaker-test.1*
+%{_mandir}/man7/alsactl_init.7*
 %{_mandir}/man8/alsaconf.8*
 %lang(fr) %{_mandir}/fr/man8/alsaconf.8*
 
