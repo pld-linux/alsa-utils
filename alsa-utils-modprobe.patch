@@ -1,11 +1,19 @@
---- alsa-utils-1.0.16/alsaconf/alsaconf.in~	2008-02-05 11:25:23.000000000 +0200
-+++ alsa-utils-1.0.16/alsaconf/alsaconf.in	2008-05-30 14:32:21.779043202 +0300
-@@ -300,7 +300,7 @@
-   cfgfile="/etc/modules.d/alsa"
- elif [ "$kernel" = "new" ]; then
-   if [ -d /etc/modprobe.d ]; then
--    cfgout="/etc/modprobe.d/sound"
-+    cfgout="/etc/modprobe.d/sound.conf"
-   fi
+--- alsa-utils-1.0.20/alsaconf/alsaconf.in.orig	2009-05-06 09:07:24.000000000 +0200
++++ alsa-utils-1.0.20/alsaconf/alsaconf.in	2009-05-17 14:21:33.032777327 +0200
+@@ -306,14 +306,14 @@
    cfgfile="/etc/modprobe.conf"
- elif [ "$distribution" = "debian" ]; then
+   if [ -d /etc/modprobe.d ]; then
+     cfgout="/etc/modprobe.d/50-sound.conf"
+-    cfgoldout="/etc/modprobe.d/sound"
++    cfgoldout="/etc/modprobe.d/sound.conf"
+     if [ ! -f $cfgout ]; then
+ 	modver=$(modprobe -V | sed -e's/^module-init-tools version //')
+ 	case "$modver" in
+ 	3.[789]*)
+ 	  ;;
+ 	*)
+-	  cfgout="/etc/modprobe.d/sound"
++	  cfgout="/etc/modprobe.d/sound.conf"
+ 	  cfgoldout=""
+ 	  ;;
+ 	esac
