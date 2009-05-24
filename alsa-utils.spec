@@ -119,8 +119,6 @@ install -D %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/alsa-oss-pcm
 rm -f $RPM_BUILD_ROOT%{_mandir}/man1/arecord.1
 echo ".so aplay.1" > $RPM_BUILD_ROOT%{_mandir}/man1/arecord.1
 
-touch $RPM_BUILD_ROOT%{_sysconfdir}/asound.conf
-
 %find_lang alsa-utils --all-name
 
 %clean
@@ -139,7 +137,6 @@ fi
 %files -f alsa-utils.lang
 %defattr(644,root,root,755)
 %doc README ChangeLog
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/asound.conf
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_sbindir}/*
 %{_datadir}/alsa/init
