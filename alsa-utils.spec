@@ -28,6 +28,7 @@ BuildRequires:	gettext-devel >= 0.14
 BuildRequires:	libtool
 BuildRequires:	ncurses-devel
 BuildRequires:	rpmbuild(macros) >= 1.268
+BuildRequires:	xmlto
 Requires:	alsa-lib >= 1.0.14
 Requires:	awk
 Requires:	dialog
