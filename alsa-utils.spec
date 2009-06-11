@@ -6,7 +6,7 @@ Summary(ru.UTF-8):	Утилиты командной строки для ALSA pr
 Summary(uk.UTF-8):	Утиліти командного рядка для ALSA project
 Name:		alsa-utils
 Version:	1.0.20
-Release:	4
+Release:	5
 # some apps GPL v2, some GPL v2+
 License:	GPL v2
 Group:		Applications/Sound
@@ -19,6 +19,7 @@ Source4:	alsactl.conf
 URL:		http://www.alsa-project.org/
 Patch0:		%{name}-fast_sampling.patch
 Patch1:		%{name}-modprobe.patch
+Patch2:		%{name}-syntax.patch
 BuildRequires:	alsa-lib-devel >= 1.0.14
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake
@@ -98,6 +99,7 @@ Skrypt init dla Advanced Linux Sound Architecture.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__gettextize}
@@ -137,6 +139,15 @@ echo ".so aplay.1" > $RPM_BUILD_ROOT%{_mandir}/man1/arecord.1
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%pretrans
+# this needs to be a dir
+if [ -d %{_datadir}/alsa/init ]; then
+	mv -b %{_datadir}/alsa/init{,.dir}
+%banner -e %{name} <<EOF
+Check %{_datadir}/alsa/init.dir for your own files and remove it when done.
+EOF
+fi
 
 %post init
 /sbin/chkconfig --add alsasound
