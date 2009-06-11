@@ -6,7 +6,7 @@ Summary(ru.UTF-8):	Утилиты командной строки для ALSA pr
 Summary(uk.UTF-8):	Утиліти командного рядка для ALSA project
 Name:		alsa-utils
 Version:	1.0.20
-Release:	3
+Release:	4
 # some apps GPL v2, some GPL v2+
 License:	GPL v2
 Group:		Applications/Sound
@@ -14,6 +14,8 @@ Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
 # Source0-md5:	6837e673ef19da96d8bd2f9e18cd9574
 Source1:	alsasound.init
 Source2:	alsa-oss-pcm
+Source3:	alsa-udev.rules
+Source4:	alsactl.conf
 URL:		http://www.alsa-project.org/
 Patch0:		%{name}-fast_sampling.patch
 Patch1:		%{name}-modprobe.patch
@@ -32,6 +34,7 @@ Requires:	diffutils
 Requires:	which
 Suggests:	gpm
 Obsoletes:	alsaconf
+Obsoletes:	alsa-udev
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -104,7 +107,9 @@ Skrypt init dla Advanced Linux Sound Architecture.
 %{__automake}
 CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
 CXXFLAGS="%{rpmcxxflags} -fno-rtti -fno-exceptions"
-%configure
+# we need alsactl for udev as early as possible
+%configure \
+	--sbindir=/sbin
 %{__make}
 
 %install
@@ -115,6 +120,15 @@ rm -rf $RPM_BUILD_ROOT
 
 install -D %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/alsasound
 install -D %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/alsa-oss-pcm
+install -D %{SOURCE3} $RPM_BUILD_ROOT/etc/udev/rules.d/90-alsa.rules
+install -D %{SOURCE4} $RPM_BUILD_ROOT/etc/alsa/alsactl.conf
+
+install -d $RPM_BUILD_ROOT/lib/alsa
+mv $RPM_BUILD_ROOT%{_datadir}/alsa/init $RPM_BUILD_ROOT/lib/alsa
+
+ln -s /lib/alsa/init $RPM_BUILD_ROOT%{_datadir}/alsa/init
+install -d $RPM_BUILD_ROOT%{_sbindir}
+ln -s /sbin/alsactl $RPM_BUILD_ROOT%{_sbindir}/alsactl
 
 rm -f $RPM_BUILD_ROOT%{_mandir}/man1/arecord.1
 echo ".so aplay.1" > $RPM_BUILD_ROOT%{_mandir}/man1/arecord.1
@@ -137,8 +151,13 @@ fi
 %files -f alsa-utils.lang
 %defattr(644,root,root,755)
 %doc README ChangeLog
+%attr(755,root,root) /sbin/*
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_sbindir}/*
+%{_sysconfdir}/alsa/alsactl.conf
+%{_sysconfdir}/udev/rules.d/90-alsa.rules
+%dir /lib/alsa
+/lib/alsa/init
 %{_datadir}/alsa/init
 %{_datadir}/alsa/speaker-test
 %{_datadir}/sounds/alsa

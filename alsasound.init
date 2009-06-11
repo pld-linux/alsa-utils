@@ -3,8 +3,6 @@
 # alsasound	This shell script takes care of starting and stopping \
 #		ALSA sound driver.
 #
-# This script requires /usr/sbin/alsactl program from alsa-utils package.
-#
 # Copyright (c) by Jaroslav Kysela <perex@jcu.cz>
 #
 #  This program is free software; you can redistribute it and/or modify
@@ -49,22 +47,6 @@ driver_start()
       /sbin/modprobe $line
       ok
     done
-
-  # restore driver settings
-  #
-  if [ -x /usr/sbin/alsactl ]; then
-    if [ -f /etc/asound.state ]; then
-      if [ "$(kernelver)" -lt "002006012" ]; then
-	for i in 1 2 3 4; do
-	  [ -a /dev/snd/controlC0 ] && break
-	  sleep 1
-	done
-      fi
-      /usr/sbin/alsactl restore
-    fi
-  else
-    show "ERROR: alsactl not found"; fail
-  fi
 }
 
 detect_stop()
@@ -79,14 +61,6 @@ detect_stop()
 
 driver_stop()
 {
-  #
-  # store driver settings
-  #
-  if [ -x /usr/sbin/alsactl ]; then
-    /usr/sbin/alsactl store
-  else
-    show '!!!alsactl not found!!!'; fail
-  fi
   #
   # remove all sound modules
   #
