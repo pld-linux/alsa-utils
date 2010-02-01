@@ -4,3 +4,12 @@
 * Playback galeon 0 0 non-block
 * Playback mozilla 0 0 non-block
 * Playback netscape-communicator 0 0 non-block
+
+# direct access to quake engines
+* Playback quake2 0 0 direct
+* Playback et.x86 0 0 direct
+* Playback et 0 0 direct
+* Playback wolfsp.x86 0 0 direct
+* Playback doomsday 0 0 direct
+* Playback quake3.x86 0 0 direct
+* Playback doom3.x86 0 0 direct
