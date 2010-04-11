@@ -13,12 +13,13 @@ Group:		Applications/Sound
 Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
 # Source0-md5:	f7180316188552ee1e6759a03f1fe98d
 Source1:	alsasound.init
+# does anything use this (probably outdated) file? not alsasound.init
 Source2:	alsa-oss-pcm
 Source3:	alsa-udev.rules
 Source4:	alsactl.conf
-URL:		http://www.alsa-project.org/
 Patch0:		%{name}-fast_sampling.patch
 Patch1:		%{name}-modprobe.patch
+URL:		http://www.alsa-project.org/
 BuildRequires:	alsa-lib-devel >= 1.0.14
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake
@@ -29,7 +30,7 @@ BuildRequires:	ncurses-devel
 BuildRequires:	ncurses-ext-devel
 BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	xmlto
-Requires:	alsa-lib >= 1.0.14
+Requires:	alsa-lib >= 1.0.20-2
 Requires:	awk
 Requires:	dialog
 Requires:	diffutils
@@ -80,6 +81,19 @@ Utilitários para o ALSA, a arquitetura de som avançada para o Linux.
   .au
 - amixer - мікшер, який керується з командного рядка
 - alsamixer - мікшер з інтерфейсом ncurses
+
+%package -n udev-alsa
+Summary:	udev rules for Advanced Linux Sound Architecture
+Summary(pl.UTF-8):	Reguły udeva dla Advanced Linux Sound Architecture
+Group:		Applications/Sound
+Requires:	%{name} = %{version}-%{release}
+Requires:	udev-core
+
+%description -n udev-alsa
+udev rules for Advanced Linux Sound Architecture.
+
+%description -n udev-alsa -l pl.UTF-8
+Reguły udeva dla Advanced Linux Sound Architecture.
 
 %package init
 Summary:	Init script for Advanced Linux Sound Architecture
@@ -161,12 +175,24 @@ fi
 
 %files -f alsa-utils.lang
 %defattr(644,root,root,755)
-%doc README ChangeLog
-%attr(755,root,root) /sbin/*
-%attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_sbindir}/*
+%doc ChangeLog README TODO
+%attr(755,root,root) /sbin/alsaconf
+%attr(755,root,root) /sbin/alsactl
+%attr(755,root,root) %{_bindir}/aconnect
+%attr(755,root,root) %{_bindir}/alsamixer
+%attr(755,root,root) %{_bindir}/amidi
+%attr(755,root,root) %{_bindir}/amixer
+%attr(755,root,root) %{_bindir}/aplay
+%attr(755,root,root) %{_bindir}/aplaymidi
+%attr(755,root,root) %{_bindir}/arecord
+%attr(755,root,root) %{_bindir}/arecordmidi
+%attr(755,root,root) %{_bindir}/aseqdump
+%attr(755,root,root) %{_bindir}/aseqnet
+%attr(755,root,root) %{_bindir}/iecset
+%attr(755,root,root) %{_bindir}/speaker-test
+# symlink
+%attr(755,root,root) %{_sbindir}/alsactl
 %{_sysconfdir}/alsa/alsactl.conf
-%{_sysconfdir}/udev/rules.d/90-alsa.rules
 %dir /lib/alsa
 /lib/alsa/init
 %{_datadir}/alsa/init
@@ -188,6 +214,10 @@ fi
 %{_mandir}/man7/alsactl_init.7*
 %{_mandir}/man8/alsaconf.8*
 %lang(fr) %{_mandir}/fr/man8/alsaconf.8*
+
+%files -n udev-alsa
+%defattr(644,root,root,755)
+%{_sysconfdir}/udev/rules.d/90-alsa.rules
 
 %files init
 %defattr(644,root,root,755)
