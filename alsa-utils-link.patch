@@ -1,0 +1,20 @@
+--- alsa-utils-1.0.24.2/configure.in~	2011-01-31 20:38:00.531764553 +0100
++++ alsa-utils-1.0.24.2/configure.in	2011-01-31 20:39:48.673656673 +0100
+@@ -136,7 +136,7 @@
+       curseslib="ncursesw"
+     else
+       AC_CHECK_LIB(ncursesw, initscr,
+-                 [ CURSESINC='<ncurses.h>'; CURSESLIB='-lncursesw'; curseslib="ncursesw"])
++                 [ CURSESINC='<ncurses.h>'; CURSESLIB='-lncursesw -ltinfow'; curseslib="ncursesw"])
+     fi
+     if test -n "$CURSESINC"; then
+       NCURSESLIBSUFFIX="w"
+@@ -153,7 +153,7 @@
+       curseslib="ncurses"
+     else
+       AC_CHECK_LIB(ncurses, initscr,
+-                 [ CURSESINC='<ncurses.h>'; CURSESLIB='-lncurses'; curseslib="ncurses"])
++                 [ CURSESINC='<ncurses.h>'; CURSESLIB='-lncurses -ltinfo'; curseslib="ncurses"])
+     fi
+   fi
+   if test "$curseslib" = "curses" -o "$curseslib" = "auto"; then
