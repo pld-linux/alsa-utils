@@ -5,20 +5,20 @@ Summary(pt_BR.UTF-8):	Utilitários para o ALSA (Advanced Linux Sound Architectur
 Summary(ru.UTF-8):	Утилиты командной строки для ALSA project
 Summary(uk.UTF-8):	Утиліти командного рядка для ALSA project
 Name:		alsa-utils
-Version:	1.0.23
+Version:	1.0.24.2
 Release:	1
 # some apps GPL v2, some GPL v2+
 License:	GPL v2
 Group:		Applications/Sound
 Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
-# Source0-md5:	cb0cf46029ac9549cf3a31bff6a4f4e1
+# Source0-md5:	8238cd57cb301d1c36bcf0ecb59ce6b2
 Source1:	alsasound.init
 # does anything use this (probably outdated) file? not alsasound.init
 Source2:	alsa-oss-pcm
-Source3:	alsa-udev.rules
-Source4:	alsactl.conf
+Source3:	alsactl.conf
 Patch0:		%{name}-fast_sampling.patch
 Patch1:		%{name}-modprobe.patch
+Patch2:		%{name}-link.patch
 URL:		http://www.alsa-project.org/
 BuildRequires:	alsa-lib-devel >= 1.0.14
 BuildRequires:	autoconf >= 2.59
@@ -114,6 +114,7 @@ Skrypt init dla Advanced Linux Sound Architecture.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__gettextize}
@@ -136,8 +137,7 @@ rm -rf $RPM_BUILD_ROOT
 
 install -D %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/alsasound
 install -D %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/alsa-oss-pcm
-install -D %{SOURCE3} $RPM_BUILD_ROOT/etc/udev/rules.d/90-alsa.rules
-install -D %{SOURCE4} $RPM_BUILD_ROOT/etc/alsa/alsactl.conf
+install -D %{SOURCE3} $RPM_BUILD_ROOT/etc/alsa/alsactl.conf
 
 install -d $RPM_BUILD_ROOT/lib/alsa
 mv $RPM_BUILD_ROOT%{_datadir}/alsa/init $RPM_BUILD_ROOT/lib/alsa
@@ -179,7 +179,9 @@ fi
 %attr(755,root,root) /sbin/alsaconf
 %attr(755,root,root) /sbin/alsactl
 %attr(755,root,root) %{_bindir}/aconnect
+%attr(755,root,root) %{_bindir}/alsaloop
 %attr(755,root,root) %{_bindir}/alsamixer
+%attr(755,root,root) %{_bindir}/alsaucm
 %attr(755,root,root) %{_bindir}/amidi
 %attr(755,root,root) %{_bindir}/amixer
 %attr(755,root,root) %{_bindir}/aplay
@@ -200,6 +202,7 @@ fi
 %{_datadir}/sounds/alsa
 %{_mandir}/man1/aconnect.1*
 %{_mandir}/man1/alsactl.1*
+%{_mandir}/man1/alsaloop.1*
 %{_mandir}/man1/alsamixer.1*
 %{_mandir}/man1/amidi.1*
 %{_mandir}/man1/amixer.1*
@@ -217,7 +220,7 @@ fi
 
 %files -n udev-alsa
 %defattr(644,root,root,755)
-%{_sysconfdir}/udev/rules.d/90-alsa.rules
+/lib/udev/rules.d/90-alsa-restore.rules
 
 %files init
 %defattr(644,root,root,755)
