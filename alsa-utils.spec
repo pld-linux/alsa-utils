@@ -6,7 +6,7 @@ Summary(ru.UTF-8):	Утилиты командной строки для ALSA pr
 Summary(uk.UTF-8):	Утиліти командного рядка для ALSA project
 Name:		alsa-utils
 Version:	1.0.24.2
-Release:	1
+Release:	2
 # some apps GPL v2, some GPL v2+
 License:	GPL v2
 Group:		Applications/Sound
@@ -36,8 +36,8 @@ Requires:	dialog
 Requires:	diffutils
 Requires:	which
 Suggests:	gpm
-Obsoletes:	alsaconf
 Obsoletes:	alsa-udev
+Obsoletes:	alsaconf
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -137,7 +137,7 @@ rm -rf $RPM_BUILD_ROOT
 
 install -D %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/alsasound
 install -D %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/alsa-oss-pcm
-install -D %{SOURCE3} $RPM_BUILD_ROOT/etc/alsa/alsactl.conf
+install -D %{SOURCE3} $RPM_BUILD_ROOT%{_sysconfdir}/alsa/alsactl.conf
 
 install -d $RPM_BUILD_ROOT/lib/alsa
 mv $RPM_BUILD_ROOT%{_datadir}/alsa/init $RPM_BUILD_ROOT/lib/alsa
@@ -173,6 +173,10 @@ if [ "$1" = "0" ]; then
 	/sbin/chkconfig --del alsasound
 fi
 
+%triggerpostun -- %{name} < 1.0.24.2-2
+install -d /var/lib/alsa
+mv -f /etc/asound.state /var/lib/alsa/asound.state
+
 %files -f alsa-utils.lang
 %defattr(644,root,root,755)
 %doc ChangeLog README TODO
@@ -195,6 +199,7 @@ fi
 # symlink
 %attr(755,root,root) %{_sbindir}/alsactl
 %{_sysconfdir}/alsa/alsactl.conf
+%dir /var/lib/alsa
 %dir /lib/alsa
 /lib/alsa/init
 %{_datadir}/alsa/init
