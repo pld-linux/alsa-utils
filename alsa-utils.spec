@@ -147,7 +147,7 @@ ln -s /lib/alsa/init $RPM_BUILD_ROOT%{_datadir}/alsa/init
 install -d $RPM_BUILD_ROOT%{_sbindir}
 ln -s /sbin/alsactl $RPM_BUILD_ROOT%{_sbindir}/alsactl
 
-rm -f $RPM_BUILD_ROOT%{_mandir}/man1/arecord.1
+%{__rm} $RPM_BUILD_ROOT%{_mandir}/man1/arecord.1
 echo ".so aplay.1" > $RPM_BUILD_ROOT%{_mandir}/man1/arecord.1
 
 %find_lang alsa-utils --all-name
