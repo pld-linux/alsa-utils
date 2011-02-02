@@ -20,11 +20,12 @@ Patch0:		%{name}-fast_sampling.patch
 Patch1:		%{name}-modprobe.patch
 Patch2:		%{name}-link.patch
 URL:		http://www.alsa-project.org/
-BuildRequires:	alsa-lib-devel >= 1.0.14
+BuildRequires:	alsa-lib-devel >= 1.0.16
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake
 BuildRequires:	flex
-BuildRequires:	gettext-devel >= 0.14
+BuildRequires:	gettext-devel >= 0.15
+BuildRequires:	libsamplerate-devel
 BuildRequires:	libtool
 BuildRequires:	ncurses-devel
 BuildRequires:	ncurses-ext-devel
