@@ -6,7 +6,7 @@ Summary(ru.UTF-8):	Утилиты командной строки для ALSA pr
 Summary(uk.UTF-8):	Утиліти командного рядка для ALSA project
 Name:		alsa-utils
 Version:	1.0.24.2
-Release:	2
+Release:	3
 # some apps GPL v2, some GPL v2+
 License:	GPL v2
 Group:		Applications/Sound
@@ -176,7 +176,9 @@ fi
 
 %triggerpostun -- %{name} < 1.0.24.2-2
 install -d /var/lib/alsa
-mv -f /etc/asound.state /var/lib/alsa/asound.state
+if [ -f /etc/asound.state ]; then
+	mv -f /etc/asound.state /var/lib/alsa/asound.state
+fi
 
 %files -f alsa-utils.lang
 %defattr(644,root,root,755)
