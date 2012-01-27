@@ -1,3 +1,4 @@
+# TODO: --with-systemdsystemunitdir
 Summary:	Advanced Linux Sound Architecture (ALSA) - Utils
 Summary(es.UTF-8):	Utilitarios para ALSA (Advanced Linux Sound Architecture)
 Summary(pl.UTF-8):	Advanced Linux Sound Architecture (ALSA) - Narzędzia
@@ -30,7 +31,7 @@ BuildRequires:	ncurses-ext-devel
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	xmlto
-Requires:	alsa-lib >= 1.0.20-2
+Requires:	alsa-lib >= 1.0.25
 Requires:	awk
 Requires:	dialog
 Requires:	diffutils
