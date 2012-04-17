@@ -1,4 +1,3 @@
-# TODO: --with-systemdsystemunitdir
 Summary:	Advanced Linux Sound Architecture (ALSA) - Utils
 Summary(es.UTF-8):	Utilitarios para ALSA (Advanced Linux Sound Architecture)
 Summary(pl.UTF-8):	Advanced Linux Sound Architecture (ALSA) - Narzędzia
@@ -7,7 +6,7 @@ Summary(ru.UTF-8):	Утилиты командной строки для ALSA pr
 Summary(uk.UTF-8):	Утиліти командного рядка для ALSA project
 Name:		alsa-utils
 Version:	1.0.25
-Release:	1
+Release:	2
 # some apps GPL v2, some GPL v2+
 License:	GPL v2
 Group:		Applications/Sound
@@ -35,10 +34,12 @@ Requires:	alsa-lib >= 1.0.25
 Requires:	awk
 Requires:	dialog
 Requires:	diffutils
+Requires:	systemd-units >= 0.38
 Requires:	which
 Suggests:	gpm
 Obsoletes:	alsa-udev
 Obsoletes:	alsaconf
+Obsoletes:	udev-alsa
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -83,19 +84,6 @@ Utilitários para o ALSA, a arquitetura de som avançada para o Linux.
 - amixer - мікшер, який керується з командного рядка
 - alsamixer - мікшер з інтерфейсом ncurses
 
-%package -n udev-alsa
-Summary:	udev rules for Advanced Linux Sound Architecture
-Summary(pl.UTF-8):	Reguły udeva dla Advanced Linux Sound Architecture
-Group:		Applications/Sound
-Requires:	%{name} = %{version}-%{release}
-Requires:	udev-core
-
-%description -n udev-alsa
-udev rules for Advanced Linux Sound Architecture.
-
-%description -n udev-alsa -l pl.UTF-8
-Reguły udeva dla Advanced Linux Sound Architecture.
-
 %package init
 Summary:	Init script for Advanced Linux Sound Architecture
 Summary(pl.UTF-8):	Skrypt init dla Advanced Linux Sound Architecture
@@ -126,7 +114,9 @@ CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
 CXXFLAGS="%{rpmcxxflags} -fno-rtti -fno-exceptions"
 # we need alsactl for udev as early as possible
 %configure \
-	--sbindir=/sbin
+	--sbindir=/sbin \
+	--with-systemdsystemunitdir=%{systemdunitdir}
+
 %{__make}
 
 %install
@@ -201,6 +191,11 @@ fi
 # symlink
 %attr(755,root,root) %{_sbindir}/alsactl
 %{_sysconfdir}/alsa/alsactl.conf
+%{systemdunitdir}/alsa-restore.service
+%{systemdunitdir}/alsa-store.service
+%{systemdunitdir}/basic.target.wants/alsa-restore.service
+%{systemdunitdir}/shutdown.target.wants/alsa-store.service
+/lib/udev/rules.d/90-alsa-restore.rules
 %dir /var/lib/alsa
 %dir /lib/alsa
 /lib/alsa/init
@@ -224,10 +219,6 @@ fi
 %{_mandir}/man7/alsactl_init.7*
 %{_mandir}/man8/alsaconf.8*
 %lang(fr) %{_mandir}/fr/man8/alsaconf.8*
-
-%files -n udev-alsa
-%defattr(644,root,root,755)
-/lib/udev/rules.d/90-alsa-restore.rules
 
 %files init
 %defattr(644,root,root,755)
