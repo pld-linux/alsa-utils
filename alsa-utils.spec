@@ -5,13 +5,13 @@ Summary(pt_BR.UTF-8):	Utilitários para o ALSA (Advanced Linux Sound Architectur
 Summary(ru.UTF-8):	Утилиты командной строки для ALSA project
 Summary(uk.UTF-8):	Утиліти командного рядка для ALSA project
 Name:		alsa-utils
-Version:	1.0.25
-Release:	2
+Version:	1.0.26
+Release:	1
 # some apps GPL v2, some GPL v2+
 License:	GPL v2
 Group:		Applications/Sound
 Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
-# Source0-md5:	f81f9dcb9a014fd32cb3a70066a5b9a9
+# Source0-md5:	4dcf1017fafc91603af96705c073eca9
 Source1:	alsasound.init
 # does anything use this (probably outdated) file? not alsasound.init
 Source2:	alsa-oss-pcm
@@ -19,7 +19,7 @@ Source3:	alsactl.conf
 Patch0:		%{name}-fast_sampling.patch
 Patch1:		%{name}-modprobe.patch
 URL:		http://www.alsa-project.org/
-BuildRequires:	alsa-lib-devel >= 1.0.25
+BuildRequires:	alsa-lib-devel >= 1.0.26
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake
 BuildRequires:	gettext-devel >= 0.15
@@ -30,7 +30,7 @@ BuildRequires:	ncurses-ext-devel
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	xmlto
-Requires:	alsa-lib >= 1.0.25
+Requires:	alsa-lib >= 1.0.26
 Requires:	awk
 Requires:	dialog
 Requires:	diffutils
@@ -146,7 +146,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %pretrans
 # this needs to be a dir
-if [ -d %{_datadir}/alsa/init ]; then
+if [ -d %{_datadir}/alsa/init -a ! -h %{_datadir}/alsa/init ]; then
 	mv -b %{_datadir}/alsa/init{,.dir}
 %banner -e %{name} <<EOF
 Check %{_datadir}/alsa/init.dir for your own files and remove it when done.
