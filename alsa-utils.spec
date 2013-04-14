@@ -5,13 +5,13 @@ Summary(pt_BR.UTF-8):	Utilitários para o ALSA (Advanced Linux Sound Architectur
 Summary(ru.UTF-8):	Утилиты командной строки для ALSA project
 Summary(uk.UTF-8):	Утиліти командного рядка для ALSA project
 Name:		alsa-utils
-Version:	1.0.26
+Version:	1.0.27
 Release:	1
 # some apps GPL v2, some GPL v2+
 License:	GPL v2
 Group:		Applications/Sound
 Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
-# Source0-md5:	4dcf1017fafc91603af96705c073eca9
+# Source0-md5:	cbfb21a24f63fb052b3392195639ce48
 Source1:	alsasound.init
 # does anything use this (probably outdated) file? not alsasound.init
 Source2:	alsa-oss-pcm
@@ -91,6 +91,7 @@ Group:		Applications/Sound
 Requires(post,preun):	/sbin/chkconfig
 Requires:	%{name} = %{version}-%{release}
 Requires:	rc-scripts
+Requires:	systemd-units
 Obsoletes:	alsa-udev
 
 %description init
@@ -224,3 +225,5 @@ fi
 %defattr(644,root,root,755)
 %attr(754,root,root) /etc/rc.d/init.d/alsasound
 %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/alsa-oss-pcm
+%{systemdunitdir}/alsa-state.service
+%{systemdunitdir}/basic.target.wants/alsa-state.service
