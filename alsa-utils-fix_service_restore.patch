@@ -1,0 +1,11 @@
+diff -urN alsa-utils-1.0.27.orig/alsactl/alsa-restore.service.in alsa-utils-1.0.27/alsactl/alsa-restore.service.in
+--- alsa-utils-1.0.27.orig/alsactl/alsa-restore.service.in	2013-04-11 13:43:06.000000000 +0200
++++ alsa-utils-1.0.27/alsactl/alsa-restore.service.in	2013-05-12 21:39:52.000000000 +0200
+@@ -12,6 +12,6 @@
+ Conflicts=shutdown.target
+ 
+ [Service]
+-Type=oneshop
++Type=oneshot
+ ExecStart=-@sbindir@/alsactl restore
+ StandardOutput=syslog

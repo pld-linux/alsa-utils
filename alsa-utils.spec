@@ -6,7 +6,7 @@ Summary(ru.UTF-8):	Утилиты командной строки для ALSA pr
 Summary(uk.UTF-8):	Утиліти командного рядка для ALSA project
 Name:		alsa-utils
 Version:	1.0.27
-Release:	3
+Release:	4
 # some apps GPL v2, some GPL v2+
 License:	GPL v2
 Group:		Applications/Sound
@@ -20,6 +20,7 @@ Patch0:		%{name}-fast_sampling.patch
 Patch1:		%{name}-modprobe.patch
 Patch2:		%{name}-build.patch
 Patch3:		alsactl-fix.patch
+Patch4:		%{name}-fix_service_restore.patch
 URL:		http://www.alsa-project.org/
 BuildRequires:	alsa-lib-devel >= 1.0.26
 BuildRequires:	autoconf >= 2.59
@@ -108,6 +109,7 @@ Skrypt init dla Advanced Linux Sound Architecture.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 %{__gettextize}
