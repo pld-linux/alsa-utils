@@ -22,7 +22,7 @@ URL:		http://www.alsa-project.org/
 BuildRequires:	alsa-lib-devel >= 1.0.26
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake
-BuildRequires:	gettext-devel >= 0.15
+BuildRequires:	gettext-tools >= 0.15
 BuildRequires:	libsamplerate-devel >= 0.1.3
 BuildRequires:	libtool
 BuildRequires:	ncurses-devel
