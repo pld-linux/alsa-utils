@@ -5,13 +5,13 @@ Summary(pt_BR.UTF-8):	Utilitários para o ALSA (Advanced Linux Sound Architectur
 Summary(ru.UTF-8):	Утилиты командной строки для ALSA project
 Summary(uk.UTF-8):	Утиліти командного рядка для ALSA project
 Name:		alsa-utils
-Version:	1.0.28
-Release:	2
+Version:	1.0.29
+Release:	1
 # some apps GPL v2, some GPL v2+
 License:	GPL v2
 Group:		Applications/Sound
 Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
-# Source0-md5:	361552d5b1cacd0a1e7ba09e69990211
+# Source0-md5:	6b289bf874c4c9a63f4b3973093dd404
 Source1:	alsasound.init
 # does anything use this (probably outdated) file? not alsasound.init
 Source2:	alsa-oss-pcm
@@ -19,18 +19,18 @@ Source3:	alsactl.conf
 Patch0:		%{name}-fast_sampling.patch
 Patch1:		%{name}-modprobe.patch
 URL:		http://www.alsa-project.org/
-BuildRequires:	alsa-lib-devel >= 1.0.26
+BuildRequires:	alsa-lib-devel >= 1.0.27
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake
 BuildRequires:	gettext-tools >= 0.15
 BuildRequires:	libsamplerate-devel >= 0.1.3
 BuildRequires:	libtool
-BuildRequires:	ncurses-devel
-BuildRequires:	ncurses-ext-devel
+BuildRequires:	ncurses-devel >= 5
+BuildRequires:	ncurses-ext-devel >= 5
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	xmlto
-Requires:	alsa-lib >= 1.0.26
+Requires:	alsa-lib >= 1.0.27
 Requires:	awk
 Requires:	dialog
 Requires:	diffutils
@@ -173,6 +173,7 @@ fi
 %files -f alsa-utils.lang
 %defattr(644,root,root,755)
 %doc ChangeLog README TODO
+%attr(755,root,root) /sbin/alsa-info.sh
 %attr(755,root,root) /sbin/alsaconf
 %attr(755,root,root) /sbin/alsactl
 %attr(755,root,root) %{_bindir}/aconnect
