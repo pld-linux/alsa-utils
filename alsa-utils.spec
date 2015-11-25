@@ -5,13 +5,13 @@ Summary(pt_BR.UTF-8):	Utilitários para o ALSA (Advanced Linux Sound Architectur
 Summary(ru.UTF-8):	Утилиты командной строки для ALSA project
 Summary(uk.UTF-8):	Утиліти командного рядка для ALSA project
 Name:		alsa-utils
-Version:	1.0.29
+Version:	1.1.0
 Release:	1
 # some apps GPL v2, some GPL v2+
 License:	GPL v2
 Group:		Applications/Sound
 Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
-# Source0-md5:	6b289bf874c4c9a63f4b3973093dd404
+# Source0-md5:	b9d6102fbbd0b68040bb77023ed30c0c
 Source1:	alsasound.init
 # does anything use this (probably outdated) file? not alsasound.init
 Source2:	alsa-oss-pcm
@@ -22,6 +22,7 @@ URL:		http://www.alsa-project.org/
 BuildRequires:	alsa-lib-devel >= 1.0.27
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake
+BuildRequires:	fftw3-devel >= 3
 BuildRequires:	gettext-tools >= 0.15
 BuildRequires:	libsamplerate-devel >= 0.1.3
 BuildRequires:	libtool
@@ -179,6 +180,7 @@ fi
 %attr(755,root,root) %{_bindir}/aconnect
 %attr(755,root,root) %{_bindir}/alsaloop
 %attr(755,root,root) %{_bindir}/alsamixer
+%attr(755,root,root) %{_bindir}/alsatplg
 %attr(755,root,root) %{_bindir}/alsaucm
 %attr(755,root,root) %{_bindir}/amidi
 %attr(755,root,root) %{_bindir}/amixer
@@ -188,6 +190,7 @@ fi
 %attr(755,root,root) %{_bindir}/arecordmidi
 %attr(755,root,root) %{_bindir}/aseqdump
 %attr(755,root,root) %{_bindir}/aseqnet
+%attr(755,root,root) %{_bindir}/bat
 %attr(755,root,root) %{_bindir}/iecset
 %attr(755,root,root) %{_bindir}/speaker-test
 # symlink
@@ -195,9 +198,7 @@ fi
 %{_sysconfdir}/alsa/alsactl.conf
 /lib/udev/rules.d/90-alsa-restore.rules
 %{systemdunitdir}/alsa-restore.service
-%{systemdunitdir}/alsa-store.service
 %{systemdunitdir}/basic.target.wants/alsa-restore.service
-%{systemdunitdir}/shutdown.target.wants/alsa-store.service
 %dir /var/lib/alsa
 %dir /lib/alsa
 /lib/alsa/init
@@ -216,6 +217,7 @@ fi
 %{_mandir}/man1/arecordmidi.1*
 %{_mandir}/man1/aseqnet.1*
 %{_mandir}/man1/aseqdump.1*
+%{_mandir}/man1/bat.1*
 %{_mandir}/man1/iecset.1*
 %{_mandir}/man1/speaker-test.1*
 %{_mandir}/man7/alsactl_init.7*
