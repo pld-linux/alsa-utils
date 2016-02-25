@@ -6,7 +6,7 @@ Summary(ru.UTF-8):	Утилиты командной строки для ALSA pr
 Summary(uk.UTF-8):	Утиліти командного рядка для ALSA project
 Name:		alsa-utils
 Version:	1.1.0
-Release:	1
+Release:	2
 # some apps GPL v2, some GPL v2+
 License:	GPL v2
 Group:		Applications/Sound
@@ -141,6 +141,10 @@ ln -s /sbin/alsactl $RPM_BUILD_ROOT%{_sbindir}/alsactl
 %{__rm} $RPM_BUILD_ROOT%{_mandir}/man1/arecord.1
 echo ".so aplay.1" > $RPM_BUILD_ROOT%{_mandir}/man1/arecord.1
 
+# Conflicts with bacula-console-qt package
+%{__mv} $RPM_BUILD_ROOT%{_bindir}/{,alsa-}bat
+%{__mv} $RPM_BUILD_ROOT%{_mandir}/man1/{,alsa-}bat.1
+
 %find_lang alsa-utils --all-name
 
 %clean
@@ -178,6 +182,7 @@ fi
 %attr(755,root,root) /sbin/alsaconf
 %attr(755,root,root) /sbin/alsactl
 %attr(755,root,root) %{_bindir}/aconnect
+%attr(755,root,root) %{_bindir}/alsa-bat
 %attr(755,root,root) %{_bindir}/alsaloop
 %attr(755,root,root) %{_bindir}/alsamixer
 %attr(755,root,root) %{_bindir}/alsatplg
@@ -190,7 +195,6 @@ fi
 %attr(755,root,root) %{_bindir}/arecordmidi
 %attr(755,root,root) %{_bindir}/aseqdump
 %attr(755,root,root) %{_bindir}/aseqnet
-%attr(755,root,root) %{_bindir}/bat
 %attr(755,root,root) %{_bindir}/iecset
 %attr(755,root,root) %{_bindir}/speaker-test
 # symlink
@@ -206,6 +210,7 @@ fi
 %{_datadir}/alsa/speaker-test
 %{_datadir}/sounds/alsa
 %{_mandir}/man1/aconnect.1*
+%{_mandir}/man1/alsa-bat.1*
 %{_mandir}/man1/alsactl.1*
 %{_mandir}/man1/alsaloop.1*
 %{_mandir}/man1/alsamixer.1*
@@ -215,9 +220,8 @@ fi
 %{_mandir}/man1/aplaymidi.1*
 %{_mandir}/man1/arecord.1*
 %{_mandir}/man1/arecordmidi.1*
-%{_mandir}/man1/aseqnet.1*
 %{_mandir}/man1/aseqdump.1*
-%{_mandir}/man1/bat.1*
+%{_mandir}/man1/aseqnet.1*
 %{_mandir}/man1/iecset.1*
 %{_mandir}/man1/speaker-test.1*
 %{_mandir}/man7/alsactl_init.7*
