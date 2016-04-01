@@ -5,13 +5,13 @@ Summary(pt_BR.UTF-8):	Utilitários para o ALSA (Advanced Linux Sound Architectur
 Summary(ru.UTF-8):	Утилиты командной строки для ALSA project
 Summary(uk.UTF-8):	Утиліти командного рядка для ALSA project
 Name:		alsa-utils
-Version:	1.1.0
-Release:	2
+Version:	1.1.1
+Release:	1
 # some apps GPL v2, some GPL v2+
 License:	GPL v2
 Group:		Applications/Sound
 Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
-# Source0-md5:	b9d6102fbbd0b68040bb77023ed30c0c
+# Source0-md5:	f8d00ad5fba757b4c3735d066cc288e2
 Source1:	alsasound.init
 # does anything use this (probably outdated) file? not alsasound.init
 Source2:	alsa-oss-pcm
@@ -141,10 +141,6 @@ ln -s /sbin/alsactl $RPM_BUILD_ROOT%{_sbindir}/alsactl
 %{__rm} $RPM_BUILD_ROOT%{_mandir}/man1/arecord.1
 echo ".so aplay.1" > $RPM_BUILD_ROOT%{_mandir}/man1/arecord.1
 
-# Conflicts with bacula-console-qt package
-%{__mv} $RPM_BUILD_ROOT%{_bindir}/{,alsa-}bat
-%{__mv} $RPM_BUILD_ROOT%{_mandir}/man1/{,alsa-}bat.1
-
 %find_lang alsa-utils --all-name
 
 %clean
@@ -179,10 +175,11 @@ fi
 %defattr(644,root,root,755)
 %doc ChangeLog README TODO
 %attr(755,root,root) /sbin/alsa-info.sh
+%attr(755,root,root) /sbin/alsabat-test.sh
 %attr(755,root,root) /sbin/alsaconf
 %attr(755,root,root) /sbin/alsactl
 %attr(755,root,root) %{_bindir}/aconnect
-%attr(755,root,root) %{_bindir}/alsa-bat
+%attr(755,root,root) %{_bindir}/alsabat
 %attr(755,root,root) %{_bindir}/alsaloop
 %attr(755,root,root) %{_bindir}/alsamixer
 %attr(755,root,root) %{_bindir}/alsatplg
@@ -210,7 +207,8 @@ fi
 %{_datadir}/alsa/speaker-test
 %{_datadir}/sounds/alsa
 %{_mandir}/man1/aconnect.1*
-%{_mandir}/man1/alsa-bat.1*
+%{_mandir}/man1/alsa-info.sh.1*
+%{_mandir}/man1/alsabat.1*
 %{_mandir}/man1/alsactl.1*
 %{_mandir}/man1/alsaloop.1*
 %{_mandir}/man1/alsamixer.1*
