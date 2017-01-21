@@ -5,23 +5,26 @@ Summary(pt_BR.UTF-8):	Utilitários para o ALSA (Advanced Linux Sound Architectur
 Summary(ru.UTF-8):	Утилиты командной строки для ALSA project
 Summary(uk.UTF-8):	Утиліти командного рядка для ALSA project
 Name:		alsa-utils
-Version:	1.1.2
+Version:	1.1.3
 Release:	1
 # some apps GPL v2, some GPL v2+
 License:	GPL v2
 Group:		Applications/Sound
 Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
-# Source0-md5:	38ac7c781f80c41c02b4664d8cbafa87
+# Source0-md5:	2bf94d3e3410dcc74bb0dae10d46a979
 Source1:	alsasound.init
 # does anything use this (probably outdated) file? not alsasound.init
 Source2:	alsa-oss-pcm
 Source3:	alsactl.conf
 Patch0:		%{name}-fast_sampling.patch
 Patch1:		%{name}-modprobe.patch
+Patch2:		%{name}-missing.patch
 URL:		http://www.alsa-project.org/
 BuildRequires:	alsa-lib-devel >= 1.0.27
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake
+# rst2man
+BuildRequires:	docutils
 BuildRequires:	fftw3-devel >= 3
 BuildRequires:	gettext-tools >= 0.15
 BuildRequires:	libsamplerate-devel >= 0.1.3
@@ -105,6 +108,7 @@ Skrypt init dla Advanced Linux Sound Architecture.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__gettextize}
@@ -212,6 +216,7 @@ fi
 %{_mandir}/man1/alsactl.1*
 %{_mandir}/man1/alsaloop.1*
 %{_mandir}/man1/alsamixer.1*
+%{_mandir}/man1/alsaucm.1*
 %{_mandir}/man1/amidi.1*
 %{_mandir}/man1/amixer.1*
 %{_mandir}/man1/aplay.1*
