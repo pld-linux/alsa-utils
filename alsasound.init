@@ -99,6 +99,11 @@ start() {
 			msg_already_running "ALSA driver"
 		fi
 	fi
+	# "restore" is handled via udev if running; if not, do it manually
+	if is_no "$START_UDEV" && [ -f /var/lib/alsa/asound.state ]; then
+		sleep 1
+		/sbin/alsactl restore
+	fi
 }
 
 # Stop daemons.
