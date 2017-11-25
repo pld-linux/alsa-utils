@@ -5,13 +5,13 @@ Summary(pt_BR.UTF-8):	Utilitários para o ALSA (Advanced Linux Sound Architectur
 Summary(ru.UTF-8):	Утилиты командной строки для ALSA project
 Summary(uk.UTF-8):	Утиліти командного рядка для ALSA project
 Name:		alsa-utils
-Version:	1.1.4
+Version:	1.1.5
 Release:	1
 # some apps GPL v2, some GPL v2+
 License:	GPL v2
 Group:		Applications/Sound
 Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
-# Source0-md5:	01e3934ca5bd22a80c27289d1b0adcdc
+# Source0-md5:	dfe6ea147a5e07a056919591c2f5dac3
 Source1:	alsasound.init
 # does anything use this (probably outdated) file? not alsasound.init
 Source2:	alsa-oss-pcm
@@ -32,12 +32,13 @@ BuildRequires:	ncurses-devel >= 5
 BuildRequires:	ncurses-ext-devel >= 5
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.268
+BuildRequires:	systemd-units >= 18
 BuildRequires:	xmlto
 Requires:	alsa-lib >= 1.0.27
 Requires:	awk
 Requires:	dialog
 Requires:	diffutils
-Requires:	systemd-units >= 0.38
+Requires:	systemd-units >= 18
 Requires:	which
 Suggests:	gpm
 Obsoletes:	alsa-udev
@@ -201,7 +202,7 @@ fi
 %{_sysconfdir}/alsa/alsactl.conf
 /lib/udev/rules.d/90-alsa-restore.rules
 %{systemdunitdir}/alsa-restore.service
-%{systemdunitdir}/basic.target.wants/alsa-restore.service
+%{systemdunitdir}/sound.target.wants/alsa-restore.service
 %dir /var/lib/alsa
 %dir /lib/alsa
 /lib/alsa/init
@@ -234,4 +235,4 @@ fi
 %attr(754,root,root) /etc/rc.d/init.d/alsasound
 %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/alsa-oss-pcm
 %{systemdunitdir}/alsa-state.service
-%{systemdunitdir}/basic.target.wants/alsa-state.service
+%{systemdunitdir}/sound.target.wants/alsa-state.service
