@@ -5,13 +5,13 @@ Summary(pt_BR.UTF-8):	Utilitários para o ALSA (Advanced Linux Sound Architectur
 Summary(ru.UTF-8):	Утилиты командной строки для ALSA project
 Summary(uk.UTF-8):	Утиліти командного рядка для ALSA project
 Name:		alsa-utils
-Version:	1.1.6
+Version:	1.1.7
 Release:	1
 # some apps GPL v2, some GPL v2+
 License:	GPL v2
 Group:		Applications/Sound
 Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
-# Source0-md5:	50ae75567459646b843bed78d916b002
+# Source0-md5:	2b88796c6b05520e59eec6049de02f64
 Source1:	alsasound.init
 # does anything use this (probably outdated) file? not alsasound.init
 Source2:	alsa-oss-pcm
@@ -200,6 +200,7 @@ fi
 # symlink
 %attr(755,root,root) %{_sbindir}/alsactl
 %{_sysconfdir}/alsa/alsactl.conf
+/lib/udev/rules.d/89-alsa-ucm.rules
 /lib/udev/rules.d/90-alsa-restore.rules
 %{systemdunitdir}/alsa-restore.service
 %{systemdunitdir}/sound.target.wants/alsa-restore.service
@@ -215,6 +216,7 @@ fi
 %{_mandir}/man1/alsactl.1*
 %{_mandir}/man1/alsaloop.1*
 %{_mandir}/man1/alsamixer.1*
+%{_mandir}/man1/alsatplg.1*
 %{_mandir}/man1/alsaucm.1*
 %{_mandir}/man1/amidi.1*
 %{_mandir}/man1/amixer.1*
