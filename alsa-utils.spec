@@ -19,7 +19,7 @@ Source3:	alsactl.conf
 Patch0:		%{name}-fast_sampling.patch
 Patch1:		%{name}-modprobe.patch
 URL:		http://www.alsa-project.org/
-BuildRequires:	alsa-lib-devel >= 1.0.27
+BuildRequires:	alsa-lib-devel >= 1.2.1
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake
 # rst2man
@@ -34,7 +34,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	systemd-units >= 18
 BuildRequires:	xmlto
-Requires:	alsa-lib >= 1.0.27
+Requires:	alsa-lib >= 1.2.1
 Requires:	awk
 Requires:	dialog
 Requires:	diffutils
