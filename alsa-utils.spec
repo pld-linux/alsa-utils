@@ -5,13 +5,13 @@ Summary(pt_BR.UTF-8):	Utilitários para o ALSA (Advanced Linux Sound Architectur
 Summary(ru.UTF-8):	Утилиты командной строки для ALSA project
 Summary(uk.UTF-8):	Утиліти командного рядка для ALSA project
 Name:		alsa-utils
-Version:	1.2.6
+Version:	1.2.7
 Release:	1
 # some apps GPL v2, some GPL v2+
 License:	GPL v2
 Group:		Applications/Sound
 Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
-# Source0-md5:	fc109b2fa4517caeae1697d936ca78ff
+# Source0-md5:	2e28285f82bc5d0d7b18af480158652c
 Source1:	alsasound.init
 # does anything use this (probably outdated) file? not alsasound.init
 Source2:	alsa-oss-pcm
@@ -111,6 +111,7 @@ Skrypt init dla Advanced Linux Sound Architecture.
 
 %build
 %{__gettextize}
+%{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__autoheader}
@@ -143,6 +144,8 @@ ln -s /sbin/alsactl $RPM_BUILD_ROOT%{_sbindir}/alsactl
 
 %{__rm} $RPM_BUILD_ROOT%{_mandir}/man1/arecord.1
 echo ".so aplay.1" > $RPM_BUILD_ROOT%{_mandir}/man1/arecord.1
+
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/alsa-topology/*.la
 
 %find_lang alsa-utils --all-name
 
@@ -200,6 +203,8 @@ fi
 %attr(755,root,root) %{_bindir}/speaker-test
 # symlink
 %attr(755,root,root) %{_sbindir}/alsactl
+%dir %{_libdir}/alsa-topology
+%attr(755,root,root) %{_libdir}/alsa-topology/libalsatplg_module_nhlt.so
 %{_sysconfdir}/alsa/alsactl.conf
 /lib/udev/rules.d/90-alsa-restore.rules
 %{systemdunitdir}/alsa-restore.service
@@ -208,7 +213,6 @@ fi
 %dir /lib/alsa
 /lib/alsa/init
 %{_datadir}/alsa/init
-%{_datadir}/alsa/speaker-test
 %{_datadir}/sounds/alsa
 %{_mandir}/man1/aconnect.1*
 %{_mandir}/man1/alsa-info.sh.1*
