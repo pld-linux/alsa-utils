@@ -41,9 +41,9 @@ Requires:	diffutils
 Requires:	systemd-units >= 18
 Requires:	which
 Suggests:	gpm
-Obsoletes:	alsa-udev
-Obsoletes:	alsaconf
-Obsoletes:	udev-alsa
+Obsoletes:	alsa-udev < 1
+Obsoletes:	alsaconf < 0.5
+Obsoletes:	udev-alsa < 1.0.25-2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -96,7 +96,6 @@ Requires(post,preun):	/sbin/chkconfig
 Requires:	%{name} = %{version}-%{release}
 Requires:	rc-scripts
 Requires:	systemd-units
-Obsoletes:	alsa-udev
 
 %description init
 Init script for Advanced Linux Sound Architecture.
