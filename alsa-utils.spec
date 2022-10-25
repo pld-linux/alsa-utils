@@ -32,6 +32,7 @@ BuildRequires:	ncurses-devel >= 5
 BuildRequires:	ncurses-ext-devel >= 5
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.268
+BuildRequires:	systemd-devel >= 18
 BuildRequires:	systemd-units >= 18
 BuildRequires:	xmlto
 Requires:	alsa-lib >= 1.2.5
