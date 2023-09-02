@@ -18,7 +18,8 @@ Source2:	alsa-oss-pcm
 Source3:	alsactl.conf
 Patch0:		%{name}-fast_sampling.patch
 Patch1:		%{name}-modprobe.patch
-URL:		http://www.alsa-project.org/
+Patch2:		%{name}-no-c2x.patch
+URL:		https://www.alsa-project.org/
 BuildRequires:	alsa-lib-devel >= 1.2.10
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake
@@ -108,6 +109,7 @@ Skrypt init dla Advanced Linux Sound Architecture.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__gettextize}
@@ -136,7 +138,7 @@ install -D %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/alsa-oss-pcm
 install -D %{SOURCE3} $RPM_BUILD_ROOT%{_sysconfdir}/alsa/alsactl.conf
 
 install -d $RPM_BUILD_ROOT/lib/alsa
-mv $RPM_BUILD_ROOT%{_datadir}/alsa/init $RPM_BUILD_ROOT/lib/alsa
+%{__mv} $RPM_BUILD_ROOT%{_datadir}/alsa/init $RPM_BUILD_ROOT/lib/alsa
 
 ln -s /lib/alsa/init $RPM_BUILD_ROOT%{_datadir}/alsa/init
 install -d $RPM_BUILD_ROOT%{_sbindir}
