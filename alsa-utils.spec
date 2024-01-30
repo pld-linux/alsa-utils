@@ -5,20 +5,19 @@ Summary(pt_BR.UTF-8):	Utilitários para o ALSA (Advanced Linux Sound Architectur
 Summary(ru.UTF-8):	Утилиты командной строки для ALSA project
 Summary(uk.UTF-8):	Утиліти командного рядка для ALSA project
 Name:		alsa-utils
-Version:	1.2.10
+Version:	1.2.11
 Release:	1
 # some apps GPL v2, some GPL v2+
 License:	GPL v2
 Group:		Applications/Sound
 Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
-# Source0-md5:	4fc281a85abb74d6c29363fb0ba2c7b8
+# Source0-md5:	36676025301315789306e99e39154732
 Source1:	alsasound.init
 # does anything use this (probably outdated) file? not alsasound.init
 Source2:	alsa-oss-pcm
 Source3:	alsactl.conf
 Patch0:		%{name}-fast_sampling.patch
 Patch1:		%{name}-modprobe.patch
-Patch2:		%{name}-no-c2x.patch
 URL:		https://www.alsa-project.org/
 BuildRequires:	alsa-lib-devel >= 1.2.10
 BuildRequires:	autoconf >= 2.59
@@ -109,7 +108,6 @@ Skrypt init dla Advanced Linux Sound Architecture.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 %{__gettextize}
