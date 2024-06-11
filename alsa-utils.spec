@@ -5,13 +5,13 @@ Summary(pt_BR.UTF-8):	Utilitários para o ALSA (Advanced Linux Sound Architectur
 Summary(ru.UTF-8):	Утилиты командной строки для ALSA project
 Summary(uk.UTF-8):	Утиліти командного рядка для ALSA project
 Name:		alsa-utils
-Version:	1.2.11
+Version:	1.2.12
 Release:	1
 # some apps GPL v2, some GPL v2+
 License:	GPL v2
 Group:		Applications/Sound
 Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
-# Source0-md5:	36676025301315789306e99e39154732
+# Source0-md5:	80b71081f0bd2bb688e2f04311f142c5
 Source1:	alsasound.init
 # does anything use this (probably outdated) file? not alsasound.init
 Source2:	alsa-oss-pcm
@@ -198,6 +198,7 @@ fi
 %attr(755,root,root) %{_bindir}/arecordmidi
 %attr(755,root,root) %{_bindir}/aseqdump
 %attr(755,root,root) %{_bindir}/aseqnet
+%attr(755,root,root) %{_bindir}/aseqsend
 %attr(755,root,root) %{_bindir}/axfer
 %attr(755,root,root) %{_bindir}/iecset
 %attr(755,root,root) %{_bindir}/nhlt-dmic-info
@@ -231,6 +232,7 @@ fi
 %{_mandir}/man1/arecordmidi.1*
 %{_mandir}/man1/aseqdump.1*
 %{_mandir}/man1/aseqnet.1*
+%{_mandir}/man1/aseqsend.1*
 %{_mandir}/man1/axfer.1.*
 %{_mandir}/man1/axfer-list.1.*
 %{_mandir}/man1/axfer-transfer.1.*
