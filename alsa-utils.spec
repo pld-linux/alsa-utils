@@ -5,13 +5,13 @@ Summary(pt_BR.UTF-8):	Utilitários para o ALSA (Advanced Linux Sound Architectur
 Summary(ru.UTF-8):	Утилиты командной строки для ALSA project
 Summary(uk.UTF-8):	Утиліти командного рядка для ALSA project
 Name:		alsa-utils
-Version:	1.2.12
+Version:	1.2.13
 Release:	1
 # some apps GPL v2, some GPL v2+
 License:	GPL v2
 Group:		Applications/Sound
 Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
-# Source0-md5:	80b71081f0bd2bb688e2f04311f142c5
+# Source0-md5:	c04cdabee211a88bf3c6c2f45b2a4f3e
 Source1:	alsasound.init
 # does anything use this (probably outdated) file? not alsasound.init
 Source2:	alsa-oss-pcm
@@ -19,7 +19,7 @@ Source3:	alsactl.conf
 Patch0:		%{name}-fast_sampling.patch
 Patch1:		%{name}-modprobe.patch
 URL:		https://www.alsa-project.org/
-BuildRequires:	alsa-lib-devel >= 1.2.10
+BuildRequires:	alsa-lib-devel >= 1.2.13
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake
 # rst2man
@@ -35,7 +35,7 @@ BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	systemd-devel >= 18
 BuildRequires:	systemd-units >= 18
 BuildRequires:	xmlto
-Requires:	alsa-lib >= 1.2.10
+Requires:	alsa-lib >= 1.2.13
 Requires:	awk
 Requires:	dialog
 Requires:	diffutils
@@ -194,8 +194,10 @@ fi
 %attr(755,root,root) %{_bindir}/amixer
 %attr(755,root,root) %{_bindir}/aplay
 %attr(755,root,root) %{_bindir}/aplaymidi
+%attr(755,root,root) %{_bindir}/aplaymidi2
 %attr(755,root,root) %{_bindir}/arecord
 %attr(755,root,root) %{_bindir}/arecordmidi
+%attr(755,root,root) %{_bindir}/arecordmidi2
 %attr(755,root,root) %{_bindir}/aseqdump
 %attr(755,root,root) %{_bindir}/aseqnet
 %attr(755,root,root) %{_bindir}/aseqsend
@@ -228,8 +230,10 @@ fi
 %{_mandir}/man1/amixer.1*
 %{_mandir}/man1/aplay.1*
 %{_mandir}/man1/aplaymidi.1*
+%{_mandir}/man1/aplaymidi2.1*
 %{_mandir}/man1/arecord.1*
 %{_mandir}/man1/arecordmidi.1*
+%{_mandir}/man1/arecordmidi2.1*
 %{_mandir}/man1/aseqdump.1*
 %{_mandir}/man1/aseqnet.1*
 %{_mandir}/man1/aseqsend.1*
