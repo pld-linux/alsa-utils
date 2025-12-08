@@ -5,13 +5,13 @@ Summary(pt_BR.UTF-8):	Utilitários para o ALSA (Advanced Linux Sound Architectur
 Summary(ru.UTF-8):	Утилиты командной строки для ALSA project
 Summary(uk.UTF-8):	Утиліти командного рядка для ALSA project
 Name:		alsa-utils
-Version:	1.2.14
+Version:	1.2.15
 Release:	1
 # some apps GPL v2, some GPL v2+
 License:	GPL v2
 Group:		Applications/Sound
 Source0:	ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}.tar.bz2
-# Source0-md5:	d098c3d677ee80cf3d9f87783cce2e53
+# Source0-md5:	29ac15e67c550c5e427a4e1c814bb337
 Source1:	alsasound.init
 # does anything use this (probably outdated) file? not alsasound.init
 Source2:	alsa-oss-pcm
@@ -19,7 +19,7 @@ Source3:	alsactl.conf
 Patch0:		%{name}-fast_sampling.patch
 Patch1:		%{name}-modprobe.patch
 URL:		https://www.alsa-project.org/
-BuildRequires:	alsa-lib-devel >= 1.2.13
+BuildRequires:	alsa-lib-devel >= 1.2.15
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake
 # rst2man
@@ -35,7 +35,7 @@ BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	systemd-devel >= 18
 BuildRequires:	systemd-units >= 18
 BuildRequires:	xmlto
-Requires:	alsa-lib >= 1.2.13
+Requires:	alsa-lib >= 1.2.15
 Requires:	awk
 Requires:	dialog
 Requires:	diffutils
@@ -112,7 +112,7 @@ Skrypt init dla Advanced Linux Sound Architecture.
 %build
 %{__gettextize}
 %{__libtoolize}
-%{__aclocal}
+%{__aclocal} -Im4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
@@ -211,6 +211,7 @@ fi
 %attr(755,root,root) %{_libdir}/alsa-topology/libalsatplg_module_nhlt.so
 %{_sysconfdir}/alsa/alsactl.conf
 /lib/udev/rules.d/90-alsa-restore.rules
+%{systemdunitdir}/alsa-card-wait@.service
 %{systemdunitdir}/alsa-restore.service
 %{systemdunitdir}/sound.target.wants/alsa-restore.service
 %dir /var/lib/alsa
